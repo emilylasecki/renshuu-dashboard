@@ -1,3 +1,5 @@
+# main for running elements to be displayed on GUI
+
 import requests
 import json
 import pandas
