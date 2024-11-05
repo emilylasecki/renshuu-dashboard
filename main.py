@@ -3,7 +3,7 @@
 
 import requests
 import json
-import pandas
+import pandas as pd
 from api_key import api_key
 
 
@@ -29,6 +29,15 @@ def main():
     filter_fields=['adventure_level', 'real_name', 'studied', 'api_usage']
 
     dict_result = { key: x[key]  for key in x if key in filter_fields}
+
+    toExcel = { key: x[key]  for key in x }
+
+    with open("API_stuff.json", "w") as outfile:  # extract desired fields into json file
+        json.dump(dict_result, outfile)
+
+    
+    df = pd.read_json("API_stuff.json", lines=True)
+    df.to_excel("API_Stuff.xlsx")
 
     print(dict_result)
 
