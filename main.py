@@ -1,4 +1,5 @@
 # main for running elements to be displayed on GUI
+# add a feature so if renshuu is down it displays the message that it is currently unavailable.
 
 import requests
 import json
@@ -24,6 +25,15 @@ def main():
     x = response.json()
     #y = json.loads(x)
     print(json.dumps(x, indent=4, sort_keys=True))
+
+    filter_fields=['adventure_level', 'real_name', 'studied', 'api_usage']
+
+    dict_result = { key: x[key]  for key in x if key in filter_fields}
+
+    print(dict_result)
+
+   # if key in x if in key in filter_fields:
+    #    print(key, x)
 
     #print(y["adventure_level"])
     #print(response.json())
