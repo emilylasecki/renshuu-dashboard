@@ -25,7 +25,7 @@ def main():
     x = response.json()
     print(json.dumps(x, indent=4, sort_keys=True))
 
-    filter_fields=['adventure_level', 'real_name', 'studied', 'api_usage', 'studied']
+    filter_fields=['adventure_level', 'real_name', 'studied', 'api_usage', 'studied', 'kao']
 
     dict_result = { key: x[key]  for key in x if key in filter_fields}
 
