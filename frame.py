@@ -28,20 +28,13 @@ l = tk.Label(window, bg="#1c5669", text = "renshuu dashboard \n 毎日がんば�
 l.config(font=("UD_Digi_Kyokasho", 20, "bold")) # to bold or not to bold?
 l.grid(row=0,column=1)
 
-#imagetest = (Image.open("kaochan.jpg"))
-#img = imagetest.resize((70,70), Image.Resampling.LANCZOS)
-#img = ImageTk.PhotoImage(imagetest)
-#panel = tk.Label(window, image = img, bd=0)
-#canvas.image = img
-#canvas.grid(row=0, column=3)
-
+# settings button
 frame =tk.Frame(window, bg="#1c5669", borderwidth=0, highlightthickness=0)
 frame.grid(row=0, column=3)
 
 canvas2 = tk.Canvas(frame, bg="orange", width=130, height=100, borderwidth=0, highlightthickness=0)
 #canvas2.grid()
 
-# settings button
 #FIXME left off here
 img2 = tk.PhotoImage(file="settings.png")
 imagetest2 = (Image.open("settings.png"))
@@ -57,22 +50,7 @@ frame2.place(relx=0.5, rely=0.6, anchor=tk.CENTER) # kissing my dreams of rounde
 
 # now alter here depending on what view is selected
 
-#canvas = tk.Canvas(frame2, bg="#1c5669", width=100, height=100, borderwidth=0, highlightthickness=0)
-#canvas.grid()
-#headings
-"""
-l = tk.Label(window, text = "Today's goals:", width=15, height=2, font="UD_Digi_Kyokasho", bg="grey", fg="black", anchor="w")
-l.config(font=("UD_Digi_Kyokasho", 12, "bold")) 
-l.grid(row=1, column=1)
-l = tk.Label(window, text = "Studied Today:", width=15, height=2, font="UD_Digi_Kyokasho", bg="grey", fg="black", anchor="w")
-l.config(font=("UD_Digi_Kyokasho", 12, "bold")) 
-l.grid(row=1, column=2)
+# daily review, daily word, jlpt progress
 
-l = tk.Label(window, text = "Vocab:", width=15, height=2, font="UD_Digi_Kyokasho", bg="grey", fg="black", anchor="nw")
-l.config(font=("UD_Digi_Kyokasho", 12, "bold")) 
-l.grid(row=2, column=1)
 
-l = tk.Label(window, text = "Vocab:", width=15, height=2, font="UD_Digi_Kyokasho", bg="grey", fg="black", anchor="nw")
-l.config(font=("UD_Digi_Kyokasho", 12, "bold")) 
-l.grid(row=2, column=2) """
 window.mainloop()
