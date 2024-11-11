@@ -91,12 +91,13 @@ def main():
             j=j+1
 
     for schedules in history:  # FIXME grammar not returning proper values
-        if "Sentences" not in schedules['name'] or "sentences" not in schedules['name'] or "kanji" not in schedules['name'] or "Kanji" not in schedules['name'] or "vocab" not in schedules['name'] or "Vocab" not in schedules['name'] or "Words" not in schedules['name'] or "words" not in schedules['name']:
+        if "" in schedules['name']:
             new_grammar = new_grammar + schedules['today']['review']
             review_grammar = review_grammar + schedules['today']['new']
             l=l+1
 
-
+    new_grammar = new_grammar - new_vocab - new_kanji - new_sentences
+    review_grammar = review_grammar - review_vocab - review_sentences - review_kanji
 
     #print(",".join(map(str, data)))
     print(new_vocab, review_vocab)
