@@ -36,7 +36,7 @@ def main():
     df = pd.read_json("profile.json", lines=True)
     df.to_excel("API_Stuff.xlsx")
 
-    print(dict_result)
+   # print(dict_result)
 
     # part 2 - schedules
 
@@ -48,6 +48,34 @@ def main():
 
     with open("schedules.json", "w") as outfile:  # extract desired fields into another json file
         json.dump(dict_result, outfile)
+        #data = json.load(outfile)
+
+    f = open('profile.json')
+    file = json.load(f)
+    name = file['kao']
+    print(name)
+
+    r = open('schedules.json')
+    file2 = json.load(r)
+
+    history = file2['schedules']
+
+    i=0
+
+    for schedules in history:
+        if "vocab" in schedules['name'] or "Vocab" in schedules['name'] or "Words" in schedules['name'] or "words" in schedules['name']:
+            data = (  # need to find a better way to grab variables
+                schedules['id'],
+                schedules['name']
+            )
+            i=i+1
+
+    print(",".join(map(str, data)))
+    print(i)
+
+    #name = file2['schedules']['id']
+    #val = m['name']
+    #print(val)
 
 # reload stats upon click
 # placeholder method

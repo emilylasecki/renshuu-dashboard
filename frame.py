@@ -1,4 +1,6 @@
-# frame for GUI elements
+# frame for GUI elements - load in physical things.
+# text elements go in seperate method so reload only changes text - not the Gui
+#from main import data  # for bringing in specific vars later
 import tkinter as tk
 from PIL import ImageTk, Image
 
