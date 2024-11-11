@@ -61,10 +61,16 @@ def main():
 
     i=0
     k=0
+    j=0
+    l=0
     new_vocab=0
     review_vocab=0
     new_kanji=0
     review_kanji=0
+    new_sentences=0
+    review_sentences=0
+    new_grammar=0
+    review_grammar=0
 
     for schedules in history:
         if "vocab" in schedules['name'] or "Vocab" in schedules['name'] or "Words" in schedules['name'] or "words" in schedules['name']: 
@@ -78,18 +84,45 @@ def main():
             review_kanji = review_kanji + schedules['today']['new']
             k=k+1
 
+    for schedules in history:
+        if "Sentences" in schedules['name'] or "sentences" in schedules['name']: 
+            new_sentences = new_sentences + schedules['today']['review']
+            review_sentences = review_sentences + schedules['today']['new']
+            j=j+1
+
+    for schedules in history:  # FIXME grammar not returning proper values
+        if "Sentences" not in schedules['name'] or "sentences" not in schedules['name'] or "kanji" not in schedules['name'] or "Kanji" not in schedules['name'] or "vocab" not in schedules['name'] or "Vocab" not in schedules['name'] or "Words" not in schedules['name'] or "words" not in schedules['name']:
+            new_grammar = new_grammar + schedules['today']['review']
+            review_grammar = review_grammar + schedules['today']['new']
+            l=l+1
+
+
+
     #print(",".join(map(str, data)))
     print(new_vocab, review_vocab)
     print(new_kanji, review_kanji)
+    print(new_sentences, review_sentences)
+    print(new_grammar, review_grammar)
     print(i)
     print(k)
+    print(j)
+    print(l)
+
+    #history2 = file['studied']
+
+    grammar = file['studied']['today_grammar']
+    vocab = file['studied']['today_vocab']
+    kanji = file['studied']['today_kanji']
+    sentences = file['studied']['today_sent']
+
+    print(grammar, vocab, kanji, sentences)
 
     #name = file2['schedules']['id']
     #val = m['name']
     #print(val)
 
 # reload stats upon click
-# placeholder method
+# placeholder fucntion, all of main will go in here later
 def reload():
 
     headers = {
