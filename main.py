@@ -57,21 +57,32 @@ def main():
 
     r = open('schedules.json')
     file2 = json.load(r)
-
     history = file2['schedules']
 
     i=0
+    k=0
+    new_vocab=0
+    review_vocab=0
+    new_kanji=0
+    review_kanji=0
 
     for schedules in history:
-        if "vocab" in schedules['name'] or "Vocab" in schedules['name'] or "Words" in schedules['name'] or "words" in schedules['name']:
-            data = (  # need to find a better way to grab variables
-                schedules['id'],
-                schedules['name']
-            )
+        if "vocab" in schedules['name'] or "Vocab" in schedules['name'] or "Words" in schedules['name'] or "words" in schedules['name']: 
+            new_vocab = new_vocab + schedules['today']['review']
+            review_vocab = review_vocab + schedules['today']['new']
             i=i+1
 
-    print(",".join(map(str, data)))
+    for schedules in history:
+        if "kanji" in schedules['name'] or "Kanji" in schedules['name']: 
+            new_kanji = new_kanji + schedules['today']['review']
+            review_kanji = review_kanji + schedules['today']['new']
+            k=k+1
+
+    #print(",".join(map(str, data)))
+    print(new_vocab, review_vocab)
+    print(new_kanji, review_kanji)
     print(i)
+    print(k)
 
     #name = file2['schedules']['id']
     #val = m['name']
