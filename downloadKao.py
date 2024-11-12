@@ -17,6 +17,6 @@ def download_image(image_url, file_dir):
         print("Failed to download the image. Status code: {response.status_code}")
 
 if __name__ == "__main__":
-    image_url = "https://www.renshuu.org/img/adventure/f/acd4vs2_150_20240408.png?v=2"
+    image_url = "https://www.renshuu.org/img/adventure/f/snrk2xe_100_20240408.png"
     file_dir = "myKao2.png"
     download_image(image_url, file_dir)

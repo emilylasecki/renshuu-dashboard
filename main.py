@@ -5,6 +5,8 @@ import requests
 import json
 import pandas as pd
 from api_key import api_key
+import os
+import matplotlib
 
 
 #connect to Resnhuu server and load in content as needed
@@ -14,7 +16,7 @@ def main():
         'accept': 'application/json',
         'Authorization': 'Bearer ' + api_key
     }   
-    url = 'https://api.renshuu.org/v1/profile/'  # get the number of reviews due today
+    url = 'https://api.renshuu.org/v1/profile/'  # get the number of reviews due today, kaochan, and jlpt
     url2 = 'https://api.renshuu.org/v1/schedule/' # get the lists to extract how many of each type of review is due
 
     # part 1 - profile
@@ -25,7 +27,7 @@ def main():
     x = response.json()
     print(json.dumps(x, indent=4, sort_keys=True))
 
-    filter_fields=['adventure_level', 'real_name', 'studied', 'api_usage', 'studied', 'kao']
+    filter_fields=['adventure_level', 'real_name', 'studied', 'api_usage', 'studied', 'kao', 'level_progress_percs']
 
     dict_result = { key: x[key]  for key in x if key in filter_fields}
 
@@ -94,7 +96,7 @@ def main():
         if "" in schedules['name']:
             new_grammar = new_grammar + schedules['today']['review']
             review_grammar = review_grammar + schedules['today']['new']
-            l=l+1
+            l=l+1  # FIXME if want to use count of schedules, this count is off
 
     new_grammar = new_grammar - new_vocab - new_kanji - new_sentences
     review_grammar = review_grammar - review_vocab - review_sentences - review_kanji
@@ -118,6 +120,18 @@ def main():
 
     print(grammar, vocab, kanji, sentences)
 
+   # a=0
+
+    """for schedules in history:  #FIXME error here - look into order of presidence
+        if "Words" in schedules['name'] and "0" not in schedules['today']['review']: 
+            a=a+1"""
+
+   # print(a)
+
+    # download kao chan
+    kaoLink = file['kao']
+    downloadKao(kaoLink, "myKao.png")
+
     #name = file2['schedules']['id']
     #val = m['name']
     #print(val)
@@ -125,20 +139,21 @@ def main():
 # reload stats upon click
 # placeholder fucntion, all of main will go in here later
 def reload():
+    print("placeholder")
 
-    headers = {
-        'accept': 'application/json',
-        'Authorization': 'Bearer ' + api_key
-    }   
+def downloadKao(image_url, file_dir):
+    response = requests.get(image_url)
 
-    #endpoint = '/v1/profile'
-    url = 'https://api.renshuu.org/v1/profile'
+    if response.status_code == 200:
+        with open(file_dir, "wb") as fp:
+            fp.write(response.content)
+        print("Image downloaded successfully.")
+    else:
+        print("Failed to download the image. Status code: {response.status_code}")
 
-    response = requests.get(url, headers=headers)
-
-    print(response.status_code) # 200 is good
-    x = response.json()
-    print(json.dumps(x, indent=4, sort_keys=True))
+# use matplotlib to take jlpt progress percents and make a graphic with it
+def createProgressChart():
+    print("placeholder")
 
 if __name__ == "__main__":
     main()
