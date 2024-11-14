@@ -10,7 +10,7 @@ import matplotlib
 
 
 #connect to Resnhuu server and load in content as needed
-def main():
+def reloadContent():
 
     headers = {
         'accept': 'application/json',
@@ -75,26 +75,26 @@ def main():
 
     for schedules in history:
         if "vocab" in schedules['name'] or "Vocab" in schedules['name'] or "Words" in schedules['name'] or "words" in schedules['name']: 
-            new_vocab = new_vocab + schedules['today']['review']
-            review_vocab = review_vocab + schedules['today']['new']
+            new_vocab = new_vocab + schedules['today']['new']
+            review_vocab = review_vocab + schedules['today']['review']
             i=i+1
 
     for schedules in history:
         if "kanji" in schedules['name'] or "Kanji" in schedules['name']: 
-            new_kanji = new_kanji + schedules['today']['review']
-            review_kanji = review_kanji + schedules['today']['new']
+            new_kanji = new_kanji + schedules['today']['new']
+            review_kanji = review_kanji + schedules['today']['review']
             k=k+1
 
     for schedules in history:
         if "Sentences" in schedules['name'] or "sentences" in schedules['name']: 
-            new_sentences = new_sentences + schedules['today']['review']
-            review_sentences = review_sentences + schedules['today']['new']
+            new_sentences = new_sentences + schedules['today']['new']
+            review_sentences = review_sentences + schedules['today']['review']
             j=j+1
 
     for schedules in history:  # FIXME grammar not returning proper values # did i resolve these or not?
         if "" in schedules['name']:
-            new_grammar = new_grammar + schedules['today']['review']
-            review_grammar = review_grammar + schedules['today']['new']
+            new_grammar = new_grammar + schedules['today']['new']
+            review_grammar = review_grammar + schedules['today']['review']
             l=l+1  # FIXME if want to use count of schedules, this count is off
 
     new_grammar = new_grammar - new_vocab - new_kanji - new_sentences
@@ -112,12 +112,12 @@ def main():
 
     #history2 = file['studied']
 
-    grammar = profile['studied']['today_grammar']
-    vocab = profile['studied']['today_vocab']
-    kanji = profile['studied']['today_kanji']
-    sentences = profile['studied']['today_sent']
+    studied_grammar = profile['studied']['today_grammar']
+    studied_vocab = profile['studied']['today_vocab']
+    studied_kanji = profile['studied']['today_kanji']
+    studied_sentences = profile['studied']['today_sent']
 
-    print(grammar, vocab, kanji, sentences)
+    print(studied_grammar, studied_vocab, studied_kanji, studied_sentences)
 
     a=0
     b=0
@@ -140,23 +140,27 @@ def main():
             if schedules['today']['review']!=0: 
                 c=c+1
     for schedules in history:  # treat grammar differently FIXME
-        if "kanji" in schedules['name'] or "Kanji" in schedules['name']: 
             if schedules['today']['review']!=0: 
                 d=d+1
     
+    d= d -a - b -c
     print(a)
     print(b)
     print(c)
+    print(d)
+
+    count = [new_vocab, review_vocab, a, studied_vocab, new_kanji, review_kanji, b, studied_kanji, new_sentences, review_sentences, d, studied_sentences, new_grammar, review_grammar, d, studied_grammar]
+
 
     # download kao chan
     kaoLink = profile['kao']
     downloadKao(kaoLink, "myKao.png")
 
+    return count
+
 
 # reload stats upon click
 # placeholder fucntion, all of main will go in here later
-def reload():
-    print("placeholder")
 
 def downloadKao(image_url, file_dir):
     response = requests.get(image_url)
@@ -172,5 +176,3 @@ def downloadKao(image_url, file_dir):
 def createProgressChart():
     print("placeholder")
 
-if __name__ == "__main__":
-    main()
