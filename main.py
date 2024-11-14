@@ -33,12 +33,9 @@ def main():
 
     with open("profile.json", "w") as outfile:  # extract desired fields into json file
         json.dump(dict_result, outfile)
-
     
     df = pd.read_json("profile.json", lines=True)
     df.to_excel("API_Stuff.xlsx")
-
-   # print(dict_result)
 
     # part 2 - schedules
 
@@ -52,14 +49,16 @@ def main():
         json.dump(dict_result, outfile)
         #data = json.load(outfile)
 
+    # get counts for the dashboard
+
     f = open('profile.json')
-    file = json.load(f)
-    name = file['kao']
+    profile = json.load(f)
+    name = profile['kao']
     print(name)
 
     r = open('schedules.json')
-    file2 = json.load(r)
-    history = file2['schedules']
+    schedules = json.load(r)
+    history = schedules['schedules']
 
     i=0
     k=0
@@ -92,7 +91,7 @@ def main():
             review_sentences = review_sentences + schedules['today']['new']
             j=j+1
 
-    for schedules in history:  # FIXME grammar not returning proper values
+    for schedules in history:  # FIXME grammar not returning proper values # did i resolve these or not?
         if "" in schedules['name']:
             new_grammar = new_grammar + schedules['today']['review']
             review_grammar = review_grammar + schedules['today']['new']
@@ -113,28 +112,46 @@ def main():
 
     #history2 = file['studied']
 
-    grammar = file['studied']['today_grammar']
-    vocab = file['studied']['today_vocab']
-    kanji = file['studied']['today_kanji']
-    sentences = file['studied']['today_sent']
+    grammar = profile['studied']['today_grammar']
+    vocab = profile['studied']['today_vocab']
+    kanji = profile['studied']['today_kanji']
+    sentences = profile['studied']['today_sent']
 
     print(grammar, vocab, kanji, sentences)
 
-   # a=0
+    a=0
+    b=0
+    c=0
+    d=0
 
-    """for schedules in history:  #FIXME error here - look into order of presidence
-        if "Words" in schedules['name'] and "0" not in schedules['today']['review']: 
-            a=a+1"""
+    # get counts of how many schedules previous data is pulled from
+    #FIXME confirm that this counts correcty tomorrow when i have reviews due
 
-   # print(a)
+    for schedules in history: 
+        if "vocab" in schedules['name'] or "Vocab" in schedules['name'] or "Words" in schedules['name'] or "words" in schedules['name']: 
+            if schedules['today']['review']!=0: 
+                a=a+1
+    for schedules in history:  
+        if "kanji" in schedules['name'] or "Kanji" in schedules['name']: 
+            if schedules['today']['review']!=0: 
+                b=b+1
+    for schedules in history:  
+        if "Sentences" in schedules['name'] or "sentences" in schedules['name']: 
+            if schedules['today']['review']!=0: 
+                c=c+1
+    for schedules in history:  # treat grammar differently FIXME
+        if "kanji" in schedules['name'] or "Kanji" in schedules['name']: 
+            if schedules['today']['review']!=0: 
+                d=d+1
+    
+    print(a)
+    print(b)
+    print(c)
 
     # download kao chan
-    kaoLink = file['kao']
+    kaoLink = profile['kao']
     downloadKao(kaoLink, "myKao.png")
 
-    #name = file2['schedules']['id']
-    #val = m['name']
-    #print(val)
 
 # reload stats upon click
 # placeholder fucntion, all of main will go in here later
