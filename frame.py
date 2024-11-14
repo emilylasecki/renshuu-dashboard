@@ -7,6 +7,7 @@ from controller import *
 
 #create the window
 def main():
+    reload()
     window = tk.Tk()
     window.title("Renshuu GUI")
     window.configure(background="#1c5669", borderwidth=5) # renshuu color
@@ -39,7 +40,6 @@ def main():
     canvas2 = tk.Canvas(frame, bg="orange", width=130, height=100, borderwidth=0, highlightthickness=0)
 #canvas2.grid()
 
-#FIXME left off here
     img2 = tk.PhotoImage(file="settings.png")
     imagetest2 = (Image.open("settings.png"))
     img2 = imagetest2.resize((30,30), Image.Resampling.LANCZOS)
@@ -51,7 +51,17 @@ def main():
     frame2 =tk.Frame(window, bg="#201c1c", borderwidth=5, highlightthickness=0, width=425, height=340)
     frame2.place(relx=0.5, rely=0.6, anchor=tk.CENTER) # kissing my dreams of rounded corners goodbye
     window.mainloop()
-    reload()
+
+    # if view is jlpt progress
+        # display that stuff
+
+    # if view is word of the day  # do i want to keep word of the day?
+        # display that stuff
+
+    # if view is schedules
+        # display that stuff
+
+    # for each view either have to create a new file that this can read from, or pass it from controller
 
 def reload():
     count = reloadContent()

@@ -51,6 +51,30 @@ def reloadContent():
 
     # get counts for the dashboard
 
+    downloadKao()
+
+    count = getCounts()
+    return count
+
+# reload stats upon click
+# placeholder fucntion, all of main will go in here later
+
+def downloadKao(image_url, file_dir):
+    response = requests.get(image_url)
+
+    if response.status_code == 200:
+        with open(file_dir, "wb") as fp:
+            fp.write(response.content)
+        print("Image downloaded successfully.")
+    else:
+        print("Failed to download the image. Status code: {response.status_code}")
+
+# use matplotlib to take jlpt progress percents and make a graphic with it
+def createProgressChart():
+    print("placeholder")
+
+# get counts for schedules page
+def getCounts():
     f = open('profile.json')
     profile = json.load(f)
     name = profile['kao']
@@ -60,7 +84,7 @@ def reloadContent():
     schedules = json.load(r)
     history = schedules['schedules']
 
-    i=0
+    i=0  # i k j and l count total schedules of each type. Do we want to use these?
     k=0
     j=0
     l=0
@@ -91,11 +115,11 @@ def reloadContent():
             review_sentences = review_sentences + schedules['today']['review']
             j=j+1
 
-    for schedules in history:  # FIXME grammar not returning proper values # did i resolve these or not?
+    for schedules in history: 
         if "" in schedules['name']:
             new_grammar = new_grammar + schedules['today']['new']
             review_grammar = review_grammar + schedules['today']['review']
-            l=l+1  # FIXME if want to use count of schedules, this count is off
+            l=l+1 
 
     new_grammar = new_grammar - new_vocab - new_kanji - new_sentences
     review_grammar = review_grammar - review_vocab - review_sentences - review_kanji
@@ -150,29 +174,5 @@ def reloadContent():
     print(d)
 
     count = [new_vocab, review_vocab, a, studied_vocab, new_kanji, review_kanji, b, studied_kanji, new_sentences, review_sentences, d, studied_sentences, new_grammar, review_grammar, d, studied_grammar]
-
-
-    # download kao chan
-    kaoLink = profile['kao']
-    downloadKao(kaoLink, "myKao.png")
-
     return count
-
-
-# reload stats upon click
-# placeholder fucntion, all of main will go in here later
-
-def downloadKao(image_url, file_dir):
-    response = requests.get(image_url)
-
-    if response.status_code == 200:
-        with open(file_dir, "wb") as fp:
-            fp.write(response.content)
-        print("Image downloaded successfully.")
-    else:
-        print("Failed to download the image. Status code: {response.status_code}")
-
-# use matplotlib to take jlpt progress percents and make a graphic with it
-def createProgressChart():
-    print("placeholder")
 
