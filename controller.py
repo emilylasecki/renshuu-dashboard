@@ -51,7 +51,10 @@ def reloadContent():
 
     # get counts for the dashboard
 
-    downloadKao()
+    f = open('profile.json')
+    profile = json.load(f)
+
+    downloadKao(profile['kao'], "myKao.png")  #FIXME
 
     count = getCounts()
     return count
