@@ -46,10 +46,19 @@ def main():
     img2 = ImageTk.PhotoImage(img2)
     canvas2.create_image(30,30, image=img2)
     canvas2.grid()
-
-
     frame2 =tk.Frame(window, bg="#201c1c", borderwidth=5, highlightthickness=0, width=425, height=340)
     frame2.place(relx=0.5, rely=0.6, anchor=tk.CENTER) # kissing my dreams of rounded corners goodbye
+
+
+    # create condition for this to show later: dispalys graph on frame
+    imagetest2 = (Image.open("graph2.png"))
+    img3 = imagetest2.resize((400,350), Image.Resampling.LANCZOS)
+    img3 = ImageTk.PhotoImage(img3)
+    image_label2 = tk.Label(frame2, image =img3)
+    image_label2.pack()
+
+
+
     window.mainloop()
 
     # if view is jlpt progress

@@ -23,7 +23,7 @@ bar2 = axs[2].barh(YAxis, XAxis3)
 bar3 = axs[3].barh(YAxis, XAxis4)
 bar4 = axs[4].barh(YAxis, XAxis5)
 
-fid.set_size_inches(7,7)
+fid.set_size_inches(7,6)
 
 #axs[4] = plt.sharex(axs[0])
 
