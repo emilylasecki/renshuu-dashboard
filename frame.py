@@ -10,9 +10,9 @@ def main():
     reload()
     window = tk.Tk()
     window.title("Renshuu GUI")
-    window.configure(background="#1c5669", borderwidth=5) # renshuu color
-    window.minsize(500,500)
-    window.maxsize(500,500)
+    window.configure(background="#1c5669", borderwidth=19) # renshuu color
+    window.minsize(600,600)
+    window.maxsize(600,600)
     window.geometry("500x500+1000+300")
 
     frame =tk.Frame(window, bg="#1c5669", borderwidth=0, highlightthickness=0)
@@ -46,15 +46,17 @@ def main():
     img2 = ImageTk.PhotoImage(img2)
     canvas2.create_image(30,30, image=img2)
     canvas2.grid()
-    frame2 =tk.Frame(window, bg="#201c1c", borderwidth=5, highlightthickness=0, width=425, height=340)
+
+    # frame for content
+    frame2 =tk.Frame(window, bg="#201c1c", borderwidth=5, highlightthickness=0, width=480, height=400)
     frame2.place(relx=0.5, rely=0.6, anchor=tk.CENTER) # kissing my dreams of rounded corners goodbye
 
 
     # create condition for this to show later: dispalys graph on frame
-    imagetest2 = (Image.open("graph2.png"))
-    img3 = imagetest2.resize((400,350), Image.Resampling.LANCZOS)
+    imagetest2 = (Image.open("my_plot.png"))
+    img3 = imagetest2.resize((480,400), Image.Resampling.LANCZOS) # cannot resize eps
     img3 = ImageTk.PhotoImage(img3)
-    image_label2 = tk.Label(frame2, image =img3)
+    image_label2 = tk.Label(frame2, image =img3, borderwidth=0, highlightthickness=0)
     image_label2.pack()
 
 
