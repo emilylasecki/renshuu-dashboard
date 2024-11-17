@@ -15,7 +15,23 @@ XAxis3 = [profile['level_progress_percs']['vocab']['n3'], profile['level_progres
 XAxis4 = [profile['level_progress_percs']['vocab']['n2'], profile['level_progress_percs']['kanji']['n2'],profile['level_progress_percs']['grammar']['n2'],profile['level_progress_percs']['sent']['n2']]
 XAxis5 = [profile['level_progress_percs']['vocab']['n1'], profile['level_progress_percs']['kanji']['n1'],profile['level_progress_percs']['grammar']['n1'],profile['level_progress_percs']['sent']['n1']]
 
-fid, axs = plt.subplots(5)
+fid, axs = plt.subplots(5, sharex=True)
+
+bar0 = axs[0].barh(YAxis, XAxis)
+bar1 = axs[1].barh(YAxis, XAxis2)
+bar2 = axs[2].barh(YAxis, XAxis3)
+bar3 = axs[3].barh(YAxis, XAxis4)
+bar4 = axs[4].barh(YAxis, XAxis5)
+
+fid.set_size_inches(7,7)
+
+#axs[4] = plt.sharex(axs[0])
+
+axs[0].bar_label(bar0, labels=[f"{x:.0f}%" for x in bar0.datavalues], color='white', padding = 3)
+axs[1].bar_label(bar1, labels=[f"{x:.0f}%" for x in bar1.datavalues], color='white', padding=3)
+axs[2].bar_label(bar2, labels=[f"{x:.0f}%" for x in bar2.datavalues], color='white', padding=3)
+axs[3].bar_label(bar3, labels=[f"{x:.0f}%" for x in bar3.datavalues], color='white', padding=3)
+axs[4].bar_label(bar4, labels=[f"{x:.0f}%" for x in bar4.datavalues], color='white', padding=3)
 
 axs[0].invert_yaxis()
 axs[1].invert_yaxis()
@@ -39,6 +55,53 @@ for s in ['top', 'bottom', 'left', 'right']:
     axs[4].spines[s].set_visible(False)
 
 axs[0].set_facecolor('#201c1c')
+axs[1].set_facecolor('#201c1c')
+axs[2].set_facecolor('#201c1c')
+axs[3].set_facecolor('#201c1c')
+axs[4].set_facecolor('#201c1c')
 fid.patch.set_facecolor('#201c1c')
 
+"""for i in axs[4].patches:
+    plt.text(i.get_width()+0.2, i.get_y()+0.5, 
+             str(round((i.get_width()), 2))+ '%',
+             fontsize = 10, fontweight ='bold',
+             color ='white') # add percent label here
+    
+for i in axs[0].patches:
+    plt.text(i.get_width()+0.2, i.get_y()+0.5, 
+             str(round((i.get_width()), 2))+ '%',
+             fontsize = 10, fontweight ='bold',
+             color ='white') # add percent label here"""
+    
+axs[0].set_title('N5', color='white')
+axs[1].set_title('N4', color='white')
+axs[2].set_title('N3', color='white')
+axs[3].set_title('N2', color='white')
+axs[4].set_title('N1', color='white')
+
+#for i, v in enumerate(XAxis):
+   # axs[0].text(i, v, f'{v:.1f}%', ha='right', va='bottom', color='white')
+
+axs[1].xaxis.set_ticks_position('none')
+axs[1].yaxis.set_ticks_position('none')
+#axs[1].set_xticklabels('none')
+axs[1].set_yticklabels(YAxis, fontsize=10, color='white')
+axs[0].xaxis.set_ticks_position('none')
+axs[0].yaxis.set_ticks_position('none')
+#axs[0].set_xticklabels('none')
+axs[0].set_yticklabels(YAxis, fontsize=10, color='white')
+axs[2].xaxis.set_ticks_position('none')
+axs[2].yaxis.set_ticks_position('none')
+#axs[2].set_xticklabels('none')
+axs[2].set_yticklabels(YAxis, fontsize=10, color='white')
+axs[3].xaxis.set_ticks_position('none')
+axs[3].yaxis.set_ticks_position('none')
+#axs[3].set_xticklabels('none')
+axs[3].set_yticklabels(YAxis, fontsize=10, color='white')
+axs[4].xaxis.set_ticks_position('none')
+axs[4].yaxis.set_ticks_position('none')
+#axs[4].set_xticklabels('none')
+axs[4].set_yticklabels(YAxis, fontsize=10, color='white')
+
+plt.savefig('graph.png', bbox_inches='tight')
 plt.show()
