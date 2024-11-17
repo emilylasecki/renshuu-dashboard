@@ -102,6 +102,45 @@ axs[4].xaxis.set_ticks_position('none')
 axs[4].yaxis.set_ticks_position('none')
 #axs[4].set_xticklabels('none')
 axs[4].set_yticklabels(YAxis, fontsize=10, color='white')
+axs[4].axes.get_xaxis().set_visible(False)
+
+colorsValue = []
+for value in XAxis:
+    if value <100:
+        colorsValue.append('blue')
+    else:
+        colorsValue.append('green')
+axs[0].barh(YAxis, XAxis, color = colorsValue)
+colorsValue = []
+for value in XAxis2:
+    if value <100:
+        colorsValue.append('blue')
+    else:
+        colorsValue.append('green')
+axs[1].barh(YAxis, XAxis2, color = colorsValue)
+colorsValue = []
+for value in XAxis3:
+    if value <100:
+        colorsValue.append('blue')
+    else:
+        colorsValue.append('green')
+axs[2].barh(YAxis, XAxis3, color = colorsValue)
+colorsValue = []
+for value in XAxis4:
+    if value <100:
+        colorsValue.append('blue')
+    else:
+        colorsValue.append('green')
+axs[3].barh(YAxis, XAxis4, color = colorsValue)
+colorsValue =[]
+for value in XAxis5:
+    if value <100:
+        colorsValue.append('blue')
+    else:
+        colorsValue.append('green')
+axs[4].barh(YAxis, XAxis5, color = colorsValue)
+
+#axs[0].barh(YAxis, XAxis, color = colorsValue)
 
 plt.savefig('graph.png', bbox_inches='tight')
 plt.show()
