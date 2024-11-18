@@ -104,7 +104,7 @@ axs[4].yaxis.set_ticks_position('none')
 axs[4].set_yticklabels(YAxis, fontsize=10, color='white')
 axs[4].axes.get_xaxis().set_visible(False)
 
-colorsValue = ["purple", "orange", "green", "red"]
+colorsValue = ["#5e5cd0", "#de8117", "#7acc18", "#d61145"]
 
 axs[0].barh(YAxis, XAxis, color = colorsValue)
 axs[1].barh(YAxis, XAxis2, color = colorsValue)
