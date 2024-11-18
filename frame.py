@@ -62,13 +62,13 @@ def main():
     image_label2.pack()
 
     # button on bottom of frame to change view
-    canvas3 = tk.Canvas(window, bg="green", borderwidth=0, highlightthickness=0, width=150, height=50)
-    text = tk.Label(canvas3, text="View JLPT Progress Graph", bg="#1c5669", fg="white", anchor="nw") #Daily Goals
-    text.config(font=("UD_Digi_Kyokasho", 12, "bold"))
-    text.grid()
+    canvas3 = tk.Canvas(window, bg="#1c5669", borderwidth=0, highlightthickness=0, width=300, height=50)
     canvas3.place(relx=0.6, rely=0.92)
-    canvas3.bind('<Button-1>', toggleView) #activate settingsClick when clicked
+    text = canvas3.create_text(120, 30, text="View JLPT Progress Graph >>", fill="white", width="300", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
+    canvas3.tag_bind(text, "<Button-1>", toggleView)
     canvas3.config(cursor="hand2")
+    #View JLPT Progress Graph >>
+    #View Daily Goals >>
 
     """l = tk.Label(window, bg="#1c5669", text = "renshuu dashboard \n 毎日がんばってね!", width=15, height=0, font="UD_Digi_Kyokasho", fg="white", anchor="nw")
     l.config(font=("UD_Digi_Kyokasho", 20, "bold")) # to bold or not to bold?
