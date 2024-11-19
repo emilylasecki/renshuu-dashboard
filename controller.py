@@ -7,6 +7,7 @@ import pandas as pd
 from api_key import api_key
 import os
 import matplotlib
+from jlptProgressGraph import *
 
 
 #connect to Resnhuu server and load in content as needed
@@ -175,6 +176,8 @@ def getCounts():
     print(b)
     print(c)
     print(d)
+
+    createGraph()
 
     count = [new_vocab, review_vocab, a, studied_vocab, new_kanji, review_kanji, b, studied_kanji, new_sentences, review_sentences, d, studied_sentences, new_grammar, review_grammar, d, studied_grammar]
     return count
