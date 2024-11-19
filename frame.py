@@ -70,9 +70,11 @@ def main():
     #View JLPT Progress Graph >>
     #View Daily Goals >>
 
-    """l = tk.Label(window, bg="#1c5669", text = "renshuu dashboard \n 毎日がんばってね!", width=15, height=0, font="UD_Digi_Kyokasho", fg="white", anchor="nw")
-    l.config(font=("UD_Digi_Kyokasho", 20, "bold")) # to bold or not to bold?
-    l.grid(row=0,column=1)"""
+    canvas4 = tk.Canvas(window, bg="#1c5669", borderwidth=0, highlightthickness=0, width=60, height=60)
+    canvas4.place(relx=0.7, rely=0.03)
+    text2 = canvas4.create_text(30, 20, text="Reload Stats", fill="white", width="60", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
+    canvas4.tag_bind(text2, "<Button-1>", reload)
+    canvas4.config(cursor="hand2")
 
     window.mainloop()
 
@@ -87,12 +89,13 @@ def main():
 
     # for each view either have to create a new file that this can read from, or pass it from controller
 
-def reload():
+def reload(event=None):
     count = reloadContent()
     i=0
     for element in count:
         print(count[i])
         i=i+1
+    #canvas4.pack_forget()
 
 def settingsClick(event=None):
     # open new frame with settings GUI and info

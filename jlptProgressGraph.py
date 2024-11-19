@@ -1,3 +1,5 @@
+# still need to resolve errors around line 77 to 97
+
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
