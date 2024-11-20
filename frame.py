@@ -20,18 +20,31 @@ def reloadElements(event):
     # reload with new image - don't think image is actually updating
 
 def settingsClick(event=None):
+
+    
+    def updateAPIkey():
+        input = inputtxt.get("1.0", "end-1c")
+        print(input)
+        print("test")
     # open new frame with settings GUI and info
     print("settings clicked")
+    newWindow = tk.Tk()
+    newWindow.title("Settings")
+    newWindow.configure(background="#1c5669", borderwidth=19) # renshuu color
+    newWindow.minsize(300,200)
+    newWindow.maxsize(300,200)
+    newWindow.geometry("500x500+1000+300")
+    inputtxt = tk.Text(newWindow, height=5, width=20)
+    inputtxt.pack()
+    UpdateButton = tk.Button(newWindow, text="Update",  command=updateAPIkey)
+    UpdateButton.pack()
 
 def toggleView(event):
     print("toggle view clicked")
 
-def createNewFrame(): # only reload counts - graph doesn't change fast enough to be relavent
+def createNewFrame(): # only reload counts - graph doesn't change fast enough to be relavent  FIXME
     frame5 =tk.Frame(window, bg="yellow", borderwidth=5, highlightthickness=0, width=480, height=400)
     frame5.place(relx=0.5, rely=0.56, anchor=tk.CENTER) # kissing my dreams of rounded corners goodbye
-
-
-
 
 #create the window
 reload()
