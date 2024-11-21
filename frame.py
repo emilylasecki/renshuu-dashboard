@@ -42,9 +42,15 @@ def settingsClick(event=None):
 def toggleView(event):
     print("toggle view clicked")
 
-def createNewFrame(): # only reload counts - graph doesn't change fast enough to be relavent  FIXME
+def createNewFrame(): # only reload counts - graph doesn't change fast enough to be relavent ** FIXME **
     frame5 =tk.Frame(window, bg="yellow", borderwidth=5, highlightthickness=0, width=480, height=400)
     frame5.place(relx=0.5, rely=0.56, anchor=tk.CENTER) # kissing my dreams of rounded corners goodbye
+
+    imagetest2 = (Image.open("my_plot.png"))
+    img3 = imagetest2.resize((480,400), Image.Resampling.LANCZOS) # cannot resize eps
+    img3 = ImageTk.PhotoImage(img3)
+    image_label2 = tk.Label(frame5, image =img3, borderwidth=0, highlightthickness=0)
+    image_label2.pack()
 
 #create the window
 reload()
@@ -99,7 +105,7 @@ frame2 =tk.Frame(window, bg="#201c1c", borderwidth=5, highlightthickness=0, widt
 frame2.place(relx=0.5, rely=0.56, anchor=tk.CENTER) # kissing my dreams of rounded corners goodbye
 
 
-    # create condition for this to show later: dispalys graph on frame
+    # create condition for this to show later: displays graph on frame
 imagetest2 = (Image.open("my_plot.png"))
 img3 = imagetest2.resize((480,400), Image.Resampling.LANCZOS) # cannot resize eps
 img3 = ImageTk.PhotoImage(img3)

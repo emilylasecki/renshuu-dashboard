@@ -74,6 +74,12 @@ def createGraph():
 #for i, v in enumerate(XAxis):
    # axs[0].text(i, v, f'{v:.1f}%', ha='right', va='bottom', color='white')
 
+    axs[0].yaxis.set_ticks(YAxis)
+    axs[1].yaxis.set_ticks(YAxis)
+    axs[2].yaxis.set_ticks(YAxis)
+    axs[3].yaxis.set_ticks(YAxis)
+    axs[4].yaxis.set_ticks(YAxis)
+
     axs[1].xaxis.set_ticks_position('none')
     axs[1].yaxis.set_ticks_position('none')
 #axs[1].set_xticklabels('none')
