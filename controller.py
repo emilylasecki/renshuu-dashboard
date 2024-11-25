@@ -50,7 +50,6 @@ def reloadContent():
 
     with open(schedulesJson, "w") as outfile:  # extract desired fields into another json file
         json.dump(dict_result, outfile)
-        #data = json.load(outfile)
 
     # get counts for the dashboard
 
@@ -62,16 +61,13 @@ def reloadContent():
     count = getCounts()
     return count
 
-# reload stats upon click
-# placeholder fucntion, all of main will go in here later
-
-def downloadKao(image_url, file_dir):
+def downloadKao(image_url, file_dir): 
     response = requests.get(image_url)
 
     if response.status_code == 200:
         with open(file_dir, "wb") as fp:
             fp.write(response.content)
-        print("Image downloaded successfully.")
+        print("Image downloaded successfully.") # may delete print statements later
     else:
         print("Failed to download the image. Status code: {response.status_code}")
 
@@ -127,7 +123,6 @@ def getCounts():
     new_grammar = new_grammar - new_vocab - new_kanji - new_sentences
     review_grammar = review_grammar - review_vocab - review_sentences - review_kanji
 
-    #print(",".join(map(str, data)))
     print(new_vocab, review_vocab)
     print(new_kanji, review_kanji)
     print(new_sentences, review_sentences)
@@ -136,8 +131,6 @@ def getCounts():
     print(k)
     print(j)
     print(l)
-
-    #history2 = file['studied']
 
     studied_grammar = profile['studied']['today_grammar']
     studied_vocab = profile['studied']['today_vocab']
@@ -152,8 +145,7 @@ def getCounts():
     d=0
 
     # get counts of how many schedules previous data is pulled from
-    #FIXME confirm that this counts correcty tomorrow when i have reviews due
-
+    # may want to modify for today and review to take seperate counts - ponder this (FIXME)
     for schedules in history: 
         if "vocab" in schedules['name'] or "Vocab" in schedules['name'] or "Words" in schedules['name'] or "words" in schedules['name']: 
             if schedules['today']['review']!=0: 

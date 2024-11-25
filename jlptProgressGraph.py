@@ -1,5 +1,3 @@
-# still need to resolve errors around line 77 to 97
-
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -29,8 +27,6 @@ def createGraph(profileJson):
 
     fid.set_size_inches(6,5)
 
-#axs[4] = plt.sharex(axs[0])
-
     axs[0].bar_label(bar0, labels=[f"{x:.0f}%" for x in bar0.datavalues], color='white', padding = 3)
     axs[1].bar_label(bar1, labels=[f"{x:.0f}%" for x in bar1.datavalues], color='white', padding=3)
     axs[2].bar_label(bar2, labels=[f"{x:.0f}%" for x in bar2.datavalues], color='white', padding=3)
@@ -42,8 +38,6 @@ def createGraph(profileJson):
     axs[2].invert_yaxis()
     axs[3].invert_yaxis()
     axs[4].invert_yaxis()
-
-
 
     axs[0].barh(YAxis, XAxis)
     axs[1].barh(YAxis, XAxis2)
@@ -71,9 +65,6 @@ def createGraph(profileJson):
     axs[3].set_title('N2', color='white')
     axs[4].set_title('N1', color='white')
 
-#for i, v in enumerate(XAxis):
-   # axs[0].text(i, v, f'{v:.1f}%', ha='right', va='bottom', color='white')
-
     axs[0].yaxis.set_ticks(YAxis)
     axs[1].yaxis.set_ticks(YAxis)
     axs[2].yaxis.set_ticks(YAxis)
@@ -82,23 +73,18 @@ def createGraph(profileJson):
 
     axs[1].xaxis.set_ticks_position('none')
     axs[1].yaxis.set_ticks_position('none')
-#axs[1].set_xticklabels('none')
     axs[1].set_yticklabels(YAxis, fontsize=10, color='white')
     axs[0].xaxis.set_ticks_position('none')
     axs[0].yaxis.set_ticks_position('none')
-#axs[0].set_xticklabels('none')
     axs[0].set_yticklabels(YAxis, fontsize=10, color='white')
     axs[2].xaxis.set_ticks_position('none')
     axs[2].yaxis.set_ticks_position('none')
-#axs[2].set_xticklabels('none')
     axs[2].set_yticklabels(YAxis, fontsize=10, color='white')
     axs[3].xaxis.set_ticks_position('none')
     axs[3].yaxis.set_ticks_position('none')
-#axs[3].set_xticklabels('none')
     axs[3].set_yticklabels(YAxis, fontsize=10, color='white')
     axs[4].xaxis.set_ticks_position('none')
     axs[4].yaxis.set_ticks_position('none')
-#axs[4].set_xticklabels('none')
     axs[4].set_yticklabels(YAxis, fontsize=10, color='white')
     axs[4].axes.get_xaxis().set_visible(False)
 
@@ -110,9 +96,4 @@ def createGraph(profileJson):
     axs[3].barh(YAxis, XAxis4, color = colorsValue)
     axs[4].barh(YAxis, XAxis5, color = colorsValue)
 
-#axs[0].barh(YAxis, XAxis, color = colorsValue)
-#plt.savefig('graph3.eps', format='eps', bbox_inches='tight')
-#plt.savefig('graph3.svg', format='svg', dpi=1200, bbox_inches='tight')
     plt.savefig('GUI_assets\my_plot.png', dpi=300, bbox_inches='tight') 
-#plt.savefig('graph2.png', bbox_inches='tight')
-    #plt.show()
