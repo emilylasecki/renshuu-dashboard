@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 import json
 import pandas as pd
 
-def createGraph():
-    f = open('profile.json')
+def createGraph(profileJson):
+    f = open(profileJson)
     profile = json.load(f)
     df = profile['level_progress_percs']
     print(df)
@@ -113,6 +113,6 @@ def createGraph():
 #axs[0].barh(YAxis, XAxis, color = colorsValue)
 #plt.savefig('graph3.eps', format='eps', bbox_inches='tight')
 #plt.savefig('graph3.svg', format='svg', dpi=1200, bbox_inches='tight')
-    plt.savefig('my_plot.png', dpi=300, bbox_inches='tight') 
+    plt.savefig('GUI_assets\my_plot.png', dpi=300, bbox_inches='tight') 
 #plt.savefig('graph2.png', bbox_inches='tight')
     #plt.show()

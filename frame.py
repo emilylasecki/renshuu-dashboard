@@ -22,18 +22,19 @@ def reloadElements(event):
 
 def settingsClick(event=None):
 
+    path= 'GUI_assets\Apikey.py'
     
     def updateAPIkey():
         input = inputtxt.get("1.0", "end-1c")
         print(input)
         print("test")
         # save input to new file
-        if not os.path.exists('apiKey.py'):
-            with open ('apiKey.py', 'w') as file:
-                file.write("api_key = \"" + input + "\"")
+        if not os.path.exists(path):
+            with open (path, 'w') as file:
+                file.write("api_key"+ "= \"" + input + "\"")
         else:
-            f = open('apiKey.py', 'w')
-            f.write("api_key = \"" + input + "\"")
+            f = open(path, 'w')
+            f.write("api_key" +" = \"" + input + "\"")
     # open new frame with settings GUI and info
     print("settings clicked")
     newWindow = tk.Tk()
@@ -54,7 +55,7 @@ def createNewFrame(): # only reload counts - graph doesn't change fast enough to
     frame5 =tk.Frame(window, bg="yellow", borderwidth=5, highlightthickness=0, width=480, height=400)
     frame5.place(relx=0.5, rely=0.56, anchor=tk.CENTER) # kissing my dreams of rounded corners goodbye
 
-    imagetest2 = (Image.open("my_plot.png"))
+    imagetest2 = (Image.open("GUI_assets\my_plot.png"))
     img3 = imagetest2.resize((480,400), Image.Resampling.LANCZOS) # cannot resize eps
     img3 = ImageTk.PhotoImage(img3)
     image_label2 = tk.Label(frame5, image =img3, borderwidth=0, highlightthickness=0)
@@ -76,8 +77,8 @@ canvas = tk.Canvas(frame, bg="#1c5669", width=100, height=100, borderwidth=0, hi
 canvas.grid(row=0, column=0)
 
 
-character = tk.PhotoImage(file="myKao.png")
-imagetest = (Image.open("myKao.png"))
+character = tk.PhotoImage(file="GUI_assets\myKao.png")
+imagetest = (Image.open("GUI_assets\myKao.png"))
 img = imagetest.resize((100,100), Image.Resampling.LANCZOS)
 img = ImageTk.PhotoImage(img)
 canvas.create_image(50,50,image=img)  # potential change, image is squashed. Acceptable the way it is but could look better
@@ -94,8 +95,8 @@ frame.place(relx=0.9, rely=0.0)
 canvas2 = tk.Canvas(frame, bg="#1c5669", borderwidth=0, highlightthickness=0, width=50, height=50)
 #canvas2.grid()
 
-img2 = tk.PhotoImage(file="settings.png")
-imagetest2 = (Image.open("settings.png"))
+img2 = tk.PhotoImage(file="GUI_assets\settings.png")
+imagetest2 = (Image.open("GUI_assets\settings.png"))
 img2 = imagetest2.resize((30,30), Image.Resampling.LANCZOS)
 img2 = ImageTk.PhotoImage(img2)
 canvas2.create_image(30,30, image=img2)
@@ -114,7 +115,7 @@ frame2.place(relx=0.5, rely=0.56, anchor=tk.CENTER) # kissing my dreams of round
 
 
     # create condition for this to show later: displays graph on frame
-imagetest2 = (Image.open("my_plot.png"))
+imagetest2 = (Image.open("GUI_assets\my_plot.png"))
 img3 = imagetest2.resize((480,400), Image.Resampling.LANCZOS) # cannot resize eps
 img3 = ImageTk.PhotoImage(img3)
 image_label2 = tk.Label(frame2, image =img3, borderwidth=0, highlightthickness=0)

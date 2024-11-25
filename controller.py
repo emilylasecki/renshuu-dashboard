@@ -9,6 +9,8 @@ import os
 import matplotlib
 from jlptProgressGraph import *
 
+profileJson = "GUI_assets\profile.json"
+schedulesJson = "GUI_assets\schedules.json"
 
 #connect to Resnhuu server and load in content as needed
 def reloadContent():
@@ -32,10 +34,10 @@ def reloadContent():
 
     dict_result = { key: x[key]  for key in x if key in filter_fields}
 
-    with open("profile.json", "w") as outfile:  # extract desired fields into json file
+    with open(profileJson, "w") as outfile:  # extract desired fields into json file
         json.dump(dict_result, outfile)
     
-    df = pd.read_json("profile.json", lines=True)
+    df = pd.read_json(profileJson, lines=True)
     df.to_excel("API_Stuff.xlsx")
 
     # part 2 - schedules
@@ -46,16 +48,16 @@ def reloadContent():
     filter_fields=['schedules', 'today']
     dict_result = { key: x[key]  for key in x if key in filter_fields}
 
-    with open("schedules.json", "w") as outfile:  # extract desired fields into another json file
+    with open(schedulesJson, "w") as outfile:  # extract desired fields into another json file
         json.dump(dict_result, outfile)
         #data = json.load(outfile)
 
     # get counts for the dashboard
 
-    f = open('profile.json')
+    f = open(profileJson)
     profile = json.load(f)
 
-    downloadKao(profile['kao'], "myKao.png")  #FIXME
+    downloadKao(profile['kao'], "GUI_assets\myKao.png")  #FIXME
 
     count = getCounts()
     return count
@@ -73,18 +75,15 @@ def downloadKao(image_url, file_dir):
     else:
         print("Failed to download the image. Status code: {response.status_code}")
 
-# use matplotlib to take jlpt progress percents and make a graphic with it
-def createProgressChart():
-    print("placeholder")
 
 # get counts for schedules page
 def getCounts():
-    f = open('profile.json')
+    f = open(profileJson)
     profile = json.load(f)
     name = profile['kao']
     print(name)
 
-    r = open('schedules.json')
+    r = open(schedulesJson)
     schedules = json.load(r)
     history = schedules['schedules']
 
@@ -177,7 +176,8 @@ def getCounts():
     print(c)
     print(d)
 
-    createGraph()
+# use matplotlib to take jlpt progress percents and make a graphic with it
+    createGraph(profileJson)
 
     count = [new_vocab, review_vocab, a, studied_vocab, new_kanji, review_kanji, b, studied_kanji, new_sentences, review_sentences, d, studied_sentences, new_grammar, review_grammar, d, studied_grammar]
     return count
