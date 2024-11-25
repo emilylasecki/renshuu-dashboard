@@ -4,6 +4,7 @@
 import tkinter as tk
 from PIL import ImageTk, Image
 from controller import *
+from pathlib import Path
 
 def reload(event=None):
     count = reloadContent()
@@ -26,6 +27,13 @@ def settingsClick(event=None):
         input = inputtxt.get("1.0", "end-1c")
         print(input)
         print("test")
+        # save input to new file
+        if not os.path.exists('apiKey.py'):
+            with open ('apiKey.py', 'w') as file:
+                file.write("api_key = \"" + input + "\"")
+        else:
+            f = open('apiKey.py', 'w')
+            f.write("api_key = \"" + input + "\"")
     # open new frame with settings GUI and info
     print("settings clicked")
     newWindow = tk.Tk()
