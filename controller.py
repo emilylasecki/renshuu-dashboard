@@ -4,7 +4,10 @@
 import requests
 import json
 import pandas as pd
-from api_key import api_key
+try:
+    from api_key import api_key
+except:
+    print("lol nope")
 import os
 import matplotlib
 from jlptProgressGraph import *
