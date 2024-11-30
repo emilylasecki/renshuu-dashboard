@@ -6,7 +6,7 @@ from PIL import ImageTk, Image
 from controller import *
 from pathlib import Path
 
-GraphVisible = False # use boolean to control what view is loaded
+GraphVisible2 = False # use boolean to control what view is loaded
 
 def reload(event=None):
     try:
@@ -21,8 +21,8 @@ def reload(event=None):
        # settingsClick()
     #canvas4.pack_forget()
 
-def reloadElements(event):
-    frame2.destroy()  # destroy works but pack doesn't
+def reloadElements(event): #FIXME add this functionality - currently doesn't operate as expected
+    frame2.forget()  # destroy works but pack doesn't
     reload()
     createNewFrame()
     # reload with new image - don't think image is actually updating
@@ -48,6 +48,7 @@ def settingsClick(event=None):
             f = open(path, 'w')
             f.write("api_key" +" = \"" + input + "\"")
         newWindow.destroy()
+        reloadElements(event=None)
 
     # open new frame with settings GUI and info
     print("settings clicked")
@@ -64,16 +65,19 @@ def settingsClick(event=None):
     newWindow.mainloop()
 
 def toggleView(event):
-    print("toggle view clicked")
+    global GraphVisible2
+    if GraphVisible2 == True:
+        GraphVisible2 = False
+        createNewFrame()
+    else:
+        GraphVisible2 = True
+        createNewFrame()
 
-def createNewFrame(): # only reload counts - graph doesn't change fast enough to be relavent ** FIXME **
-    frame5 =tk.Frame(window, bg="yellow", borderwidth=5, highlightthickness=0, width=480, height=400)
-    frame5.place(relx=0.5, rely=0.56, anchor=tk.CENTER)
-
-    imagetest2 = (Image.open("GUI_assets\my_plot.png"))
-    img3 = imagetest2.resize((480,400), Image.Resampling.LANCZOS)
-   # image_label2 = tk.Label(frame5, image =imagetest2, borderwidth=0, highlightthickness=0) # FIXME line 61 and 62
-   # image_label2.pack()
+def createNewFrame(): 
+    if GraphVisible2 == True:
+        frame3.tkraise()
+    if GraphVisible2 == False:
+        frame2.tkraise()
 
 #create the window
 try:
@@ -120,20 +124,24 @@ try:
 
         # frame for content
 
-    frame4 =tk.Frame(window, bg="#201c1c", borderwidth=5, highlightthickness=0, width=480, height=400)
-    frame4.place(relx=0.5, rely=0.56, anchor=tk.CENTER)
+   # frame4 =tk.Frame(window, bg="#201c1c", borderwidth=5, highlightthickness=0, width=480, height=400)
+   # frame4.place(relx=0.5, rely=0.56, anchor=tk.CENTER)
+
+    frame3 =tk.Frame(window, bg="#201c1c", borderwidth=5, highlightthickness=0, width=480, height=400)
+    frame3.place(relx=0.5, rely=0.56, anchor=tk.CENTER)
 
 
     frame2 =tk.Frame(window, bg="#201c1c", borderwidth=5, highlightthickness=0, width=480, height=400)
     frame2.place(relx=0.5, rely=0.56, anchor=tk.CENTER)
 
-    # FIXME create toggle view here
-    """   # create condition for this to show later: displays graph on frame
+
+
+    # create condition for this to show later: displays graph on frame
     imagetest2 = (Image.open("GUI_assets\my_plot.png"))
     img3 = imagetest2.resize((480,400), Image.Resampling.LANCZOS) 
     img3 = ImageTk.PhotoImage(img3)
-    image_label2 = tk.Label(frame2, image =img3, borderwidth=0, highlightthickness=0)
-    image_label2.pack()"""
+    image_label2 = tk.Label(frame3, image =img3, borderwidth=0, highlightthickness=0)
+    image_label2.pack()
 
    # l = tk.Label(frame2, )
     l = tk.Label(frame2, bg="#1c5669", text = "Invalid API Key. Configure API key in settings!", width=500, height=0, font="UD_Digi_Kyokasho", fg="white", anchor="nw")
@@ -154,71 +162,73 @@ try:
 
     l.destroy()
 
+
+
     text = tk.Label(frame2, text= "Today's Goals ", bg="#201c1c", fg="white")
     text.config(font=("UD_Digi_Kyokasho", 20)) 
     text.place(relx=0.05, rely=0.05)
 
-    text = tk.Label(frame2, text= "New Vocab: " + count[0], bg="#201c1c", fg="white")
-    text.config(font=("UD_Digi_Kyokasho", 14)) 
-    text.place(relx=0.05, rely=0.2)
+    text2 = tk.Label(frame2, text= "New Vocab: " + count[0], bg="#201c1c", fg="white")
+    text2.config(font=("UD_Digi_Kyokasho", 14)) 
+    text2.place(relx=0.05, rely=0.2)
 
-    text = tk.Label(frame2, text= "Review Vocab: " + count[1], bg="#201c1c", fg="white")
-    text.config(font=("UD_Digi_Kyokasho", 14)) 
-    text.place(relx=0.05, rely=0.3)
+    text3 = tk.Label(frame2, text= "Review Vocab: " + count[1], bg="#201c1c", fg="white")
+    text3.config(font=("UD_Digi_Kyokasho", 14)) 
+    text3.place(relx=0.05, rely=0.3)
 
-    text = tk.Label(frame2, text= "New Kanji: " + count[4], bg="#201c1c", fg="white")
-    text.config(font=("UD_Digi_Kyokasho", 14)) 
-    text.place(relx=0.05, rely=0.4)
+    text4 = tk.Label(frame2, text= "New Kanji: " + count[4], bg="#201c1c", fg="white")
+    text4.config(font=("UD_Digi_Kyokasho", 14)) 
+    text4.place(relx=0.05, rely=0.4)
 
-    text = tk.Label(frame2, text= "Review Kanji: " + count[5], bg="#201c1c", fg="white")
-    text.config(font=("UD_Digi_Kyokasho", 14)) 
-    text.place(relx=0.05, rely=0.5)
+    text5 = tk.Label(frame2, text= "Review Kanji: " + count[5], bg="#201c1c", fg="white")
+    text5.config(font=("UD_Digi_Kyokasho", 14)) 
+    text5.place(relx=0.05, rely=0.5)
 
-    text = tk.Label(frame2, text= "New Sentences: " + count[8], bg="#201c1c", fg="white")
-    text.config(font=("UD_Digi_Kyokasho", 14)) 
-    text.place(relx=0.05, rely=0.6)
+    text6 = tk.Label(frame2, text= "New Sentences: " + count[8], bg="#201c1c", fg="white")
+    text6.config(font=("UD_Digi_Kyokasho", 14)) 
+    text6.place(relx=0.05, rely=0.6)
 
-    text = tk.Label(frame2, text= "Review Sentences: " + count[9], bg="#201c1c", fg="white")
-    text.config(font=("UD_Digi_Kyokasho", 14)) 
-    text.place(relx=0.05, rely=0.7)
+    text7 = tk.Label(frame2, text= "Review Sentences: " + count[9], bg="#201c1c", fg="white")
+    text7.config(font=("UD_Digi_Kyokasho", 14)) 
+    text7.place(relx=0.05, rely=0.7)
 
-    text = tk.Label(frame2, text= "New Grammar: " + count[12], bg="#201c1c", fg="white")
-    text.config(font=("UD_Digi_Kyokasho", 14)) 
-    text.place(relx=0.05, rely=0.8)
+    text8 = tk.Label(frame2, text= "New Grammar: " + count[12], bg="#201c1c", fg="white")
+    text8.config(font=("UD_Digi_Kyokasho", 14)) 
+    text8.place(relx=0.05, rely=0.8)
 
-    text = tk.Label(frame2, text= "Review Grammar: " + count[13], bg="#201c1c", fg="white")
-    text.config(font=("UD_Digi_Kyokasho", 14)) 
-    text.place(relx=0.05, rely=0.9)
+    text9 = tk.Label(frame2, text= "Review Grammar: " + count[13], bg="#201c1c", fg="white")
+    text9.config(font=("UD_Digi_Kyokasho", 14)) 
+    text9.place(relx=0.05, rely=0.9)
 
-    text = tk.Label(frame2, text= "Today Done ", bg="#201c1c", fg="white")
-    text.config(font=("UD_Digi_Kyokasho", 20)) 
-    text.place(relx=0.6, rely=0.05)
+    text10 = tk.Label(frame2, text= "Today Done ", bg="#201c1c", fg="white")
+    text10.config(font=("UD_Digi_Kyokasho", 20)) 
+    text10.place(relx=0.6, rely=0.05)
 
-    text = tk.Label(frame2, text= "Studied Vocab: " + count[3], bg="#201c1c", fg="white")
-    text.config(font=("UD_Digi_Kyokasho", 14)) 
-    text.place(relx=0.6, rely=0.2)
+    text11 = tk.Label(frame2, text= "Studied Vocab: " + count[3], bg="#201c1c", fg="white")
+    text11.config(font=("UD_Digi_Kyokasho", 14)) 
+    text11.place(relx=0.6, rely=0.2)
 
-    text = tk.Label(frame2, text= "Studied Kanji: " + count[7], bg="#201c1c", fg="white")
-    text.config(font=("UD_Digi_Kyokasho", 14)) 
-    text.place(relx=0.6, rely=0.3)
+    text12 = tk.Label(frame2, text= "Studied Kanji: " + count[7], bg="#201c1c", fg="white")
+    text12.config(font=("UD_Digi_Kyokasho", 14)) 
+    text12.place(relx=0.6, rely=0.3)
 
-    text = tk.Label(frame2, text= "Studied Sentences: " + count[11], bg="#201c1c", fg="white")
-    text.config(font=("UD_Digi_Kyokasho", 14)) 
-    text.place(relx=0.6, rely=0.4)
+    text13 = tk.Label(frame2, text= "Studied Sentences: " + count[11], bg="#201c1c", fg="white")
+    text13.config(font=("UD_Digi_Kyokasho", 14)) 
+    text13.place(relx=0.6, rely=0.4)
 
-    text = tk.Label(frame2, text= "Studied Grammar: " + count[15], bg="#201c1c", fg="white")
-    text.config(font=("UD_Digi_Kyokasho", 14)) 
-    text.place(relx=0.6, rely=0.5)
+    text14 = tk.Label(frame2, text= "Studied Grammar: " + count[15], bg="#201c1c", fg="white")
+    text14.config(font=("UD_Digi_Kyokasho", 14)) 
+    text14.place(relx=0.6, rely=0.5)
 
 
         # button on bottom of frame to change view
     canvas3 = tk.Canvas(window, bg="#1c5669", borderwidth=0, highlightthickness=0, width=300, height=50)
     canvas3.place(relx=0.6, rely=0.92)
-    text = canvas3.create_text(120, 30, text="View JLPT Progress Graph >>", fill="white", width="300", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
-    canvas3.tag_bind(text, "<Button-1>", toggleView)
+    text34 = canvas3.create_text(120, 30, text="View JLPT Progress Graph >>", fill="white", width="300", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
+    canvas3.tag_bind(text34, "<Button-1>", toggleView)
     canvas3.config(cursor="hand2")
-        #View JLPT Progress Graph >>
-        #View Daily Goals >>
+    #View JLPT Progress Graph >>
+    #View Daily Goals >>
 
         #reload button
 
