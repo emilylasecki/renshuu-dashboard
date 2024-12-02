@@ -22,7 +22,7 @@ def reload(event=None):
     #canvas4.pack_forget()
 
 def reloadElements(event): #FIXME add this functionality - currently doesn't operate as expected
-    frame2.forget()  # destroy works but pack doesn't
+   # frame2.forget()  # destroy works but pack doesn't
     reload()
     createNewFrame()
     # reload with new image - don't think image is actually updating
@@ -75,9 +75,41 @@ def toggleView(event):
 
 def createNewFrame(): 
     if GraphVisible2 == True:
+        try:
+            canvas5.destroy()
+        except:
+            print("canvas5 not destroyed")
+        try:
+            #canvas5.destroy()
+            canvas3 = tk.Canvas(window, bg="#1c5669", borderwidth=0, highlightthickness=0, width=300, height=50)
+            text34 = canvas3.create_text(120, 30, text="View Daily Goals >>", fill="white", width="300", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
+            canvas3.tag_bind(text34, "<Button-1>", toggleView)
+            canvas3.config(cursor="hand2")
+            canvas3.place(relx=0.6, rely=0.92)
+
+        except:
+            print("oops")
         frame3.tkraise()
+      #  canvas5.tag_raise("all")
+       # canvas5.tkraise()
     if GraphVisible2 == False:
+        try:
+            canvas3.destroy()
+        except:
+            print("canvas 3 didn;t die")
+        try:
+           # canvas3.destroy()
+            canvas5 = tk.Canvas(window, bg="#1c5669", borderwidth=0, highlightthickness=0, width=300, height=50)
+            text1 = canvas5.create_text(120, 30, text="View JLPT Progress Graph >>", fill="white", width="300", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
+            canvas5.tag_bind(text1, "<Button-1>", toggleView)
+            canvas5.config(cursor="hand2")
+            canvas5.place(relx=0.6, rely=0.92)
+        except:
+            print("lmao")
+       # canvas5.tag_raise()
         frame2.tkraise()
+      #  canvas3.tag_raise("all")
+       # canvas3.tkraise()
 
 #create the window
 try:
@@ -223,14 +255,18 @@ try:
 
         # button on bottom of frame to change view
     canvas3 = tk.Canvas(window, bg="#1c5669", borderwidth=0, highlightthickness=0, width=300, height=50)
-    canvas3.place(relx=0.6, rely=0.92)
-    text34 = canvas3.create_text(120, 30, text="View JLPT Progress Graph >>", fill="white", width="300", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
+    text34 = canvas3.create_text(120, 30, text="View Daily Goals >>", fill="white", width="300", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
     canvas3.tag_bind(text34, "<Button-1>", toggleView)
     canvas3.config(cursor="hand2")
+    canvas3.place(relx=0.6, rely=0.92)
+
+    canvas5 = tk.Canvas(window, bg="#1c5669", borderwidth=0, highlightthickness=0, width=300, height=50)
+    text1 = canvas5.create_text(120, 30, text="View JLPT Progress Graph >>", fill="white", width="300", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
+    canvas5.tag_bind(text1, "<Button-1>", toggleView)
+    canvas5.config(cursor="hand2")
+    canvas5.place(relx=0.6, rely=0.92)
     #View JLPT Progress Graph >>
     #View Daily Goals >>
-
-        #reload button
 
     window.mainloop()
 except:
