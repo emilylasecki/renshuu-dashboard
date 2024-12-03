@@ -31,7 +31,7 @@ def reloadContent():
 
     print(response.status_code)
     x = response.json()
-    print(json.dumps(x, indent=4, sort_keys=True))
+   # print(json.dumps(x, indent=4, sort_keys=True))
 
     filter_fields=['adventure_level', 'real_name', 'studied', 'api_usage', 'studied', 'kao', 'level_progress_percs']
 
@@ -47,7 +47,7 @@ def reloadContent():
 
     response = requests.get(url2, headers=headers)
     x = response.json()
-    print(json.dumps(x, indent=4, sort_keys=True))
+   # print(json.dumps(x, indent=4, sort_keys=True))
     filter_fields=['schedules', 'today']
     dict_result = { key: x[key]  for key in x if key in filter_fields}
 
@@ -80,7 +80,7 @@ def getCounts():
     f = open(profileJson)
     profile = json.load(f)
     name = profile['kao']
-    print(name)
+  #  print(name)
 
     r = open(schedulesJson)
     schedules = json.load(r)
@@ -98,7 +98,6 @@ def getCounts():
     review_sentences=0
     new_grammar=0
     review_grammar=0
-
     for schedules in history:
         if "vocab" in schedules['name'] or "Vocab" in schedules['name'] or "Words" in schedules['name'] or "words" in schedules['name']: 
             new_vocab = new_vocab + schedules['today']['new']
@@ -123,25 +122,28 @@ def getCounts():
             review_grammar = review_grammar + schedules['today']['review']
             l=l+1 
 
+    print(review_vocab)
+
+
     new_grammar = new_grammar - new_vocab - new_kanji - new_sentences
     review_grammar = review_grammar - review_vocab - review_sentences - review_kanji
 
-    print(new_vocab, review_vocab)
+    """print(new_vocab, review_vocab)
     print(new_kanji, review_kanji)
     print(new_sentences, review_sentences)
     print(new_grammar, review_grammar)
     print(i)
     print(k)
     print(j)
-    print(l)
+    print(l)"""
 
     studied_grammar = profile['studied']['today_grammar']
     studied_vocab = profile['studied']['today_vocab']
     studied_kanji = profile['studied']['today_kanji']
     studied_sentences = profile['studied']['today_sent']
 
-    print(studied_grammar, studied_vocab, studied_kanji, studied_sentences)
-
+   # print(studied_grammar, studied_vocab, studied_kanji, studied_sentences)
+   # print(studied_vocab)
     a=0
     b=0
     c=0
@@ -166,10 +168,10 @@ def getCounts():
                 d=d+1
     
     d= d -a - b -c
-    print(a)
+    """print(a)
     print(b)
     print(c)
-    print(d)
+    print(d)"""
 
 # use matplotlib to take jlpt progress percents and make a graphic with it
     createGraph(profileJson)
