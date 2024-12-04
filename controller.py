@@ -17,7 +17,6 @@ schedulesJson = "GUI_assets\schedules.json"
 
 #connect to Resnhuu server and load in content as needed
 def reloadContent():
-
     headers = {
         'accept': 'application/json',
         'Authorization': 'Bearer ' + api_key

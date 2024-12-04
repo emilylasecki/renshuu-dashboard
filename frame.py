@@ -191,98 +191,106 @@ try:
 
 
     #text0 = tk.StringVar(frame2,"Today's Goals")
-    text = tk.Label(frame2, text="Today's Goals", bg="#201c1c", fg="white")
+    text = tk.Label(frame2, text="Today's Goals:", bg="#201c1c", fg="white")
     text.config(font=("UD_Digi_Kyokasho", 20)) 
-    text.place(relx=0.05, rely=0.05)
+    text.place(relx=0.05, rely=0.02)
 
 
-    test1 = tk.StringVar()
+    test1 = tk.StringVar() #something wrong here FIXME
     newVocab = "New Vocab: "
     test1.set(newVocab + count[0])
     text2 = tk.Label(frame2, textvariable= test1, bg="#201c1c", fg="white")
     text2.config(font=("UD_Digi_Kyokasho", 14)) 
-    text2.place(relx=0.05, rely=0.2)
+   # text2.place(relx=0.05, rely=0.2)
+    text2.place(relx=0.05, rely=0.6)
 
     test2 = tk.StringVar()
     reviewVocab = "Review Vocab: "
     test2.set(reviewVocab + count[1])
     text3 = tk.Label(frame2, textvariable= test2, bg="#201c1c", fg="white")
     text3.config(font=("UD_Digi_Kyokasho", 14)) 
-    text3.place(relx=0.05, rely=0.3)
+    text3.place(relx=0.05, rely=0.15 )
+    #text3.place(relx=0.05, rely=0.3)
 
     test3 = tk.StringVar()
     newKanji = "New Kanji: "
     test3.set(newKanji + count[4])
     text4 = tk.Label(frame2, textvariable=test3, bg="#201c1c", fg="white")
     text4.config(font=("UD_Digi_Kyokasho", 14)) 
-    text4.place(relx=0.05, rely=0.4)
+   # text4.place(relx=0.05, rely=0.4)
+    text4.place(relx=0.05, rely=0.7)
 
     test4 = tk.StringVar()
     reviewKanji = "Review Kanji: "
     test4.set(reviewKanji + count[5])
     text5 = tk.Label(frame2, textvariable=test4, bg="#201c1c", fg="white")
     text5.config(font=("UD_Digi_Kyokasho", 14)) 
-    text5.place(relx=0.05, rely=0.5)
+   # text5.place(relx=0.05, rely=0.5)
+    text5.place(relx=0.05, rely=0.25)
 
     test5 = tk.StringVar()
-    newSentences = "New Sentecnes: "
+    newSentences = "New Sentences: "
     test5.set(newSentences + count[8])
     text6 = tk.Label(frame2, textvariable=test5, bg="#201c1c", fg="white")
     text6.config(font=("UD_Digi_Kyokasho", 14)) 
-    text6.place(relx=0.05, rely=0.6)
+   # text6.place(relx=0.05, rely=0.6)
+    text6.place(relx=0.05, rely=0.8)
 
     test6= tk.StringVar()
     reviewSentences = "Review Sentences: "
     test6.set(reviewSentences + count[9])
     text7 = tk.Label(frame2, textvariable=test6, bg="#201c1c", fg="white")
     text7.config(font=("UD_Digi_Kyokasho", 14)) 
-    text7.place(relx=0.05, rely=0.7)
+   # text7.place(relx=0.05, rely=0.7)
+    text7.place(relx=0.05, rely=0.35)
 
     test7 = tk.StringVar()
     newGrammar = "New Grammar: "
     test7.set(newGrammar + count[12])
     text8 = tk.Label(frame2, textvariable=test7, bg="#201c1c", fg="white")
     text8.config(font=("UD_Digi_Kyokasho", 14)) 
-    text8.place(relx=0.05, rely=0.8)
+   # text8.place(relx=0.05, rely=0.8)
+    text8.place(relx=0.05, rely=0.9)
 
     test8 = tk.StringVar()
     reviewGrammar = "Review Grammar: "
     test8.set(reviewGrammar + count[13])
     text9 = tk.Label(frame2, textvariable=test8, bg="#201c1c", fg="white")
     text9.config(font=("UD_Digi_Kyokasho", 14)) 
-    text9.place(relx=0.05, rely=0.9)
+   # text9.place(relx=0.05, rely=0.9)
+    text9.place(relx=0.05, rely=0.45)
 
-    text10 = tk.Label(frame2, text= "Today Done ", bg="#201c1c", fg="white")
+    text10 = tk.Label(frame2, text= "Today Done: ", bg="#201c1c", fg="white")
     text10.config(font=("UD_Digi_Kyokasho", 20)) 
-    text10.place(relx=0.6, rely=0.05)
+    text10.place(relx=0.55, rely=0.02)
 
     test9 = tk.StringVar()
     studiedVocab = "Studied Vocab: "
     test9.set(studiedVocab + count[3])
     text11 = tk.Label(frame2, textvariable=test9, bg="#201c1c", fg="white")
     text11.config(font=("UD_Digi_Kyokasho", 14)) 
-    text11.place(relx=0.6, rely=0.2)
+    text11.place(relx=0.55, rely=0.15)
 
     test10 = tk.StringVar()
     studiedKanji = "Studied Kanji: "
     test10.set(studiedKanji + count[7])
     text12 = tk.Label(frame2, textvariable=test10, bg="#201c1c", fg="white")
     text12.config(font=("UD_Digi_Kyokasho", 14)) 
-    text12.place(relx=0.6, rely=0.3)
+    text12.place(relx=0.55, rely=0.25)
 
     test11 = tk.StringVar()
     studiedSentences = "Studied Sentences: "
     test11.set(studiedSentences + count[11])
     text13 = tk.Label(frame2, textvariable=test11, bg="#201c1c", fg="white")
     text13.config(font=("UD_Digi_Kyokasho", 14)) 
-    text13.place(relx=0.6, rely=0.4)
+    text13.place(relx=0.55, rely=0.35)
 
     test12 = tk.StringVar()
     studiedGrammar= "Studied Grammar: "
     test12.set(studiedGrammar + count[15])
     text14 = tk.Label(frame2, textvariable=test12, bg="#201c1c", fg="white")
     text14.config(font=("UD_Digi_Kyokasho", 14)) 
-    text14.place(relx=0.6, rely=0.5)
+    text14.place(relx=0.55, rely=0.45)
 
 
         # button on bottom of frame to change view
@@ -305,5 +313,3 @@ try:
     window.mainloop()
 except:
     loadSimpleFrame()
-
-
