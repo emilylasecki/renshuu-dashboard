@@ -10,7 +10,7 @@ GraphVisible2 = False # use boolean to control what view is loaded
 
 def reload(event=None):
     try:
-        count = reloadContent()
+        count = reloadContent(0)
         i=0
         for element in count:
           #  print(count[i])
@@ -21,28 +21,31 @@ def reload(event=None):
        # settingsClick()
     #canvas4.pack_forget()
 
-def reloadElements(event): #FIXME add this functionality - currently doesn't operate as expected
+def reloadElements(event):
    # frame2.forget()  # destroy works but pack doesn't
-    count = reloadContent()
-    i=0
-    while i<16:
-        count[i] = str(count[i])
-        i=i+1
-     #   print(count[i])
+    try:
+        count = reloadContent(0)
+        i=0
+        while i<16:
+            count[i] = str(count[i])
+            i=i+1
+        #   print(count[i])
 
-    test1.set(newVocab + count[0]) # get new count
-    test2.set(reviewVocab + count[1])
-    test3.set(newKanji + count[4])
-    test4.set(reviewKanji + count[5])
-    test5.set(newSentences + count[8])
-    test6.set(reviewSentences + count[9])
-    test7.set(newGrammar + count[12])
-    test8.set(reviewGrammar + count[13])
-    test9.set(studiedVocab + count[3])
-    test10.set(studiedKanji + count[7])
-    test11.set(studiedSentences + count[11])
-    test12.set(studiedGrammar + count[15])
-    createNewFrame()
+        test1.set(newVocab + count[0]) # get new count
+        test2.set(reviewVocab + count[1])
+        test3.set(newKanji + count[4])
+        test4.set(reviewKanji + count[5])
+        test5.set(newSentences + count[8])
+        test6.set(reviewSentences + count[9])
+        test7.set(newGrammar + count[12])
+        test8.set(reviewGrammar + count[13])
+        test9.set(studiedVocab + count[3])
+        test10.set(studiedKanji + count[7])
+        test11.set(studiedSentences + count[11])
+        test12.set(studiedGrammar + count[15])
+        createNewFrame()
+    except:
+        print("couldn't update frame")
     # reload with new image - don't think image is actually updating
 
 def loadSimpleFrame():
@@ -52,35 +55,45 @@ def loadSimpleFrame():
 
 def settingsClick(event=None):
 
-    path= 'GUI_assets\Apikey.py'
+    path= 'Apikey.py'
     
     def updateAPIkey():
         input = inputtxt.get("1.0", "end-1c")
         print(input)
-        print("test")
+       # print("test")
         # save input to new file
         if not os.path.exists(path):
             with open (path, 'w') as file:
                 file.write("api_key"+ "= \"" + input + "\"")
         else:
-            f = open(path, 'w')
-            f.write("api_key" +" = \"" + input + "\"")
+            os.remove("Apikey.py")
+            with open (path, 'w') as file:
+                file.write("api_key"+ "= \"" + input + "\"")
         newWindow.destroy()
-        reloadElements(event=None)
+       # reloadElements(event=None)
 
-    # open new frame with settings GUI and info
+    # open new frame with settings GUI and info #Find
     print("settings clicked")
     newWindow = tk.Tk()
     newWindow.title("Settings")
     newWindow.configure(background="#1c5669", borderwidth=19) # renshuu color
-    newWindow.minsize(300,200)
-    newWindow.maxsize(300,200)
+    newWindow.minsize(300,300)
+    newWindow.maxsize(300,300)
     newWindow.geometry("500x500+1000+300")
-    inputtxt = tk.Text(newWindow, height=5, width=20)
-    inputtxt.pack()
+    message = tk.Label(newWindow, text="Copy your Renshuu API key and paste it in the box below. Press update and then restart the program to review your Renshuu stats!", wraplength=260, bg="#1c5669", fg="white", anchor="center")
+    message.config(font=("UD_Digi_Kyokasho",10, "bold"))
+   # message.place(relx = 0.05, rely=0.05)
+    inputtxt = tk.Text(newWindow, height=8, width=20)
+    inputtxt.place(relx= 0.2, rely=0.35)
     UpdateButton = tk.Button(newWindow, text="Update",  command=updateAPIkey)
-    UpdateButton.pack()
+    UpdateButton.place(relx=0.42, rely=0.9)
+    message.place(relx = 0.01, rely=0.01)
     newWindow.mainloop()
+   # reloadContent(input)
+
+""" text10 = tk.Label(frame2, text= "Today Done: ", bg="#201c1c", fg="white")
+    text10.config(font=("UD_Digi_Kyokasho", 20)) """
+  #  text1 = newWindow.create_text(120, 30, text="View JLPT Progress Graph >>", fill="white", width="300", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
 
 def toggleView(event):
     global GraphVisible2
@@ -110,7 +123,7 @@ def createNewFrame():
 try:
     count =reload()
     window = tk.Tk()
-    window.title("Renshuu GUI")
+    window.title("renshuu dashboard")
     window.configure(background="#1c5669", borderwidth=19) # renshuu color
     window.minsize(600,620)
     window.maxsize(600,620)
@@ -176,7 +189,7 @@ try:
 
     canvas4 = tk.Canvas(window, bg="#1c5669", borderwidth=0, highlightthickness=0, width=60, height=60)
     canvas4.place(relx=0.7, rely=0.03)
-    text2 = canvas4.create_text(30, 20, text="Reload Stats", fill="white", width="60", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
+    text2 = canvas4.create_text(30, 20, text="Reload Frame", fill="white", width="60", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
     canvas4.tag_bind(text2, "<Button-1>", reloadElements)
     canvas4.config(cursor="hand2")
 
