@@ -158,14 +158,15 @@ try:
     img2 = imagetest2.resize((30,30), Image.Resampling.LANCZOS)
     img2 = ImageTk.PhotoImage(img2)
     canvas2.create_image(30,30, image=img2)
+    #canvas2.place(relx=0.2, rely=0.9)
     canvas2.grid()
     canvas2.bind('<Button-1>', settingsClick) #activate settingsClick when clicked
     canvas2.config(cursor="hand2") # make different cursor on hover
 
         # frame for content
 
-   # frame4 =tk.Frame(window, bg="#201c1c", borderwidth=5, highlightthickness=0, width=480, height=400)
-   # frame4.place(relx=0.5, rely=0.56, anchor=tk.CENTER)
+    # frame4 =tk.Frame(window, bg="#201c1c", borderwidth=5, highlightthickness=0, width=480, height=400)
+    # frame4.place(relx=0.5, rely=0.56, anchor=tk.CENTER)
 
     frame3 =tk.Frame(window, bg="#201c1c", borderwidth=5, highlightthickness=0, width=480, height=400)
     frame3.place(relx=0.5, rely=0.56, anchor=tk.CENTER)
@@ -183,15 +184,34 @@ try:
     image_label2 = tk.Label(frame3, image =img3, borderwidth=0, highlightthickness=0)
     image_label2.pack()
 
-   # l = tk.Label(frame2, )
+    # l = tk.Label(frame2, )
     l = tk.Label(frame2, bg="#1c5669", text = "Invalid API Key. Configure API key in settings!", width=500, height=0, font="UD_Digi_Kyokasho", fg="white", anchor="nw")
     l.place(relx = 0.01, rely = 0.5)
+    canvas6 = tk.Canvas(window, bg="#1c5669", borderwidth=0, highlightthickness=0, width=40, height=40)
+    imgforFrame = (Image.open("GUI_assets\ButtonReload.png"))
+    imgagain = imgforFrame.resize((40,40), Image.Resampling.LANCZOS)
+    imgAgain = ImageTk.PhotoImage(imgagain)
 
-    canvas4 = tk.Canvas(window, bg="#1c5669", borderwidth=0, highlightthickness=0, width=60, height=60)
+    #  canvas6 = tk.Canvas(frame, bg="#1c5669", borderwidth=0, highlightthickness=0, width=50, height=50)
+    canvas6.create_image(40,40, image=imgAgain, anchor="se")
+    canvas6.place(relx=0.75, rely=0.05)
+    canvas6.bind("<Button-1>", reloadElements)
+    canvas6.config(cursor="hand2")
+    """canvas4 = tk.Canvas(window, bg="#1c5669", borderwidth=0, highlightthickness=0, width=60, height=60)
     canvas4.place(relx=0.7, rely=0.03)
     text2 = canvas4.create_text(30, 20, text="Reload Frame", fill="white", width="60", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
     canvas4.tag_bind(text2, "<Button-1>", reloadElements)
-    canvas4.config(cursor="hand2")
+    canvas4.config(cursor="hand2")"""
+
+
+    """img2 = tk.PhotoImage(file="GUI_assets\settings.png")
+    imagetest2 = (Image.open("GUI_assets\settings.png"))
+    img2 = imagetest2.resize((30,30), Image.Resampling.LANCZOS)
+    img2 = ImageTk.PhotoImage(img2)
+    canvas2.create_image(30,30, image=img2)
+    canvas2.grid()
+    canvas2.bind('<Button-1>', settingsClick) #activate settingsClick when clicked
+    canvas2.config(cursor="hand2")"""
 
     #for reference
     # count = [new_vocab, review_vocab, a, studied_vocab, new_kanji, review_kanji, b, studied_kanji, new_sentences, review_sentences, d, studied_sentences, new_grammar, review_grammar, d, studied_grammar]
@@ -214,7 +234,7 @@ try:
     test1.set(newVocab + count[0])
     text2 = tk.Label(frame2, textvariable= test1, bg="#201c1c", fg="white")
     text2.config(font=("UD_Digi_Kyokasho", 14)) 
-   # text2.place(relx=0.05, rely=0.2)
+    # text2.place(relx=0.05, rely=0.2)
     text2.place(relx=0.05, rely=0.6)
 
     test2 = tk.StringVar()
@@ -230,7 +250,7 @@ try:
     test3.set(newKanji + count[4])
     text4 = tk.Label(frame2, textvariable=test3, bg="#201c1c", fg="white")
     text4.config(font=("UD_Digi_Kyokasho", 14)) 
-   # text4.place(relx=0.05, rely=0.4)
+    # text4.place(relx=0.05, rely=0.4)
     text4.place(relx=0.05, rely=0.7)
 
     test4 = tk.StringVar()
@@ -238,7 +258,7 @@ try:
     test4.set(reviewKanji + count[5])
     text5 = tk.Label(frame2, textvariable=test4, bg="#201c1c", fg="white")
     text5.config(font=("UD_Digi_Kyokasho", 14)) 
-   # text5.place(relx=0.05, rely=0.5)
+    # text5.place(relx=0.05, rely=0.5)
     text5.place(relx=0.05, rely=0.25)
 
     test5 = tk.StringVar()
@@ -246,7 +266,7 @@ try:
     test5.set(newSentences + count[8])
     text6 = tk.Label(frame2, textvariable=test5, bg="#201c1c", fg="white")
     text6.config(font=("UD_Digi_Kyokasho", 14)) 
-   # text6.place(relx=0.05, rely=0.6)
+    # text6.place(relx=0.05, rely=0.6)
     text6.place(relx=0.05, rely=0.8)
 
     test6= tk.StringVar()
@@ -254,7 +274,7 @@ try:
     test6.set(reviewSentences + count[9])
     text7 = tk.Label(frame2, textvariable=test6, bg="#201c1c", fg="white")
     text7.config(font=("UD_Digi_Kyokasho", 14)) 
-   # text7.place(relx=0.05, rely=0.7)
+    # text7.place(relx=0.05, rely=0.7)
     text7.place(relx=0.05, rely=0.35)
 
     test7 = tk.StringVar()
@@ -262,7 +282,7 @@ try:
     test7.set(newGrammar + count[12])
     text8 = tk.Label(frame2, textvariable=test7, bg="#201c1c", fg="white")
     text8.config(font=("UD_Digi_Kyokasho", 14)) 
-   # text8.place(relx=0.05, rely=0.8)
+    # text8.place(relx=0.05, rely=0.8)
     text8.place(relx=0.05, rely=0.9)
 
     test8 = tk.StringVar()
@@ -270,7 +290,7 @@ try:
     test8.set(reviewGrammar + count[13])
     text9 = tk.Label(frame2, textvariable=test8, bg="#201c1c", fg="white")
     text9.config(font=("UD_Digi_Kyokasho", 14)) 
-   # text9.place(relx=0.05, rely=0.9)
+    # text9.place(relx=0.05, rely=0.9)
     text9.place(relx=0.05, rely=0.45)
 
     text10 = tk.Label(frame2, text= "Today Done: ", bg="#201c1c", fg="white")
@@ -313,13 +333,13 @@ try:
     canvas3.config(cursor="hand2")
     canvas3.place(relx=0.6, rely=0.92)
 
-   # canvas5 = tk.Canvas(window, bg="#1c5669", borderwidth=0, highlightthickness=0, width=300, height=50)
+    # canvas5 = tk.Canvas(window, bg="#1c5669", borderwidth=0, highlightthickness=0, width=300, height=50)
     text1 = canvas3.create_text(120, 30, text="View JLPT Progress Graph >>", fill="white", width="300", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
     canvas3.tag_bind(text1, "<Button-1>", toggleView)
 
     canvas3.itemconfigure(text34, state='hidden')
-   # canvas5.config(cursor="hand2")
-   # canvas5.place(relx=0.6, rely=0.92)
+    # canvas5.config(cursor="hand2")
+    # canvas5.place(relx=0.6, rely=0.92)
     #View JLPT Progress Graph >>
     #View Daily Goals >>
 
