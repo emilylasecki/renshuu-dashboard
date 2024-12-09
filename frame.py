@@ -117,6 +117,43 @@ def createNewFrame():
         canvas3.itemconfigure(text1, state='normal')
       #  canvas3.tag_raise("all")
        # canvas3.tag_raise(text34)
+
+def moreInfo(event=None): # create a GUI that gives info on how counts are calculated
+    print("button clicked")
+    moreInfoWindow = tk.Tk()
+    moreInfoWindow.title("About renshuu dashboard")
+    moreInfoWindow.configure(background="#1c5669", borderwidth=19)
+    moreInfoWindow.minsize(400,400)
+    moreInfoWindow.maxsize(400,400)
+    about = tk.Label(moreInfoWindow, text="How are counts calculated? Because Renshuu API doesn't provide schedule types, the category of each schedule is determined by keywords in the title. Schedules with words or vocab are vocab, schedules with kanji are kanji, schedules with sentences are sentences, and schedules with none of these keywords are grammar. If the counts seem off on your dashboard, please check that your schedules follow this naming convention and alter them if need be.", wraplength=330, bg="#1c5669", fg="white", anchor="center")
+    about.config(font=("UD_Digi_Kyokasho",10, "bold"))
+    about.place(relx=0.05, rely=0.05)
+    api = tk.Label(moreInfoWindow, text="Why do I have to restart the whole program to update the API key? Python caches the values of non-json files that cannot be updated during run time. To combat this, restarting the entire program clears the cache and allows these files to update. This is also the case for the MyKao character that appears on the frame and the JLPT Progress Graph.", wraplength=330, bg="#1c5669", fg="white", anchor="center")
+    api.config(font=("UD_Digi_Kyokasho",10, "bold"))
+    api.place(relx=0.05, rely=0.5)
+    thisProject = tk.Label(moreInfoWindow, text="to read more about the development of this program visit https://github.com/emilylasecki/RenshuuAPI", wraplength=330, bg="#1c5669", fg="white", anchor="center") # make link clickable and update when repository name updates
+    thisProject.config(font=("UD_Digi_Kyokasho",10, "bold"))
+    thisProject.place(relx=0.05, rely=0.9)
+    moreInfoWindow.mainloop()
+
+
+    """# open new frame with settings GUI and info #Find
+    print("settings clicked")
+    newWindow = tk.Tk()
+    newWindow.title("Settings")
+    newWindow.configure(background="#1c5669", borderwidth=19) # renshuu color
+    newWindow.minsize(300,300)
+    newWindow.maxsize(300,300)
+    newWindow.geometry("500x500+1000+300")
+    message = tk.Label(newWindow, text="Copy your Renshuu API key and paste it in the box below. Press update and then restart the program to review your Renshuu stats!", wraplength=260, bg="#1c5669", fg="white", anchor="center")
+    message.config(font=("UD_Digi_Kyokasho",10, "bold"))
+   # message.place(relx = 0.05, rely=0.05)
+    inputtxt = tk.Text(newWindow, height=8, width=20)
+    inputtxt.place(relx= 0.2, rely=0.35)
+    UpdateButton = tk.Button(newWindow, text="Update",  command=updateAPIkey)
+    UpdateButton.place(relx=0.42, rely=0.9)
+    message.place(relx = 0.01, rely=0.01)
+    newWindow.mainloop()"""
         
 
 #create the window
@@ -197,21 +234,16 @@ try:
     canvas6.place(relx=0.75, rely=0.05)
     canvas6.bind("<Button-1>", reloadElements)
     canvas6.config(cursor="hand2")
-    """canvas4 = tk.Canvas(window, bg="#1c5669", borderwidth=0, highlightthickness=0, width=60, height=60)
-    canvas4.place(relx=0.7, rely=0.03)
-    text2 = canvas4.create_text(30, 20, text="Reload Frame", fill="white", width="60", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
-    canvas4.tag_bind(text2, "<Button-1>", reloadElements)
-    canvas4.config(cursor="hand2")"""
+   
 
-
-    """img2 = tk.PhotoImage(file="GUI_assets\settings.png")
-    imagetest2 = (Image.open("GUI_assets\settings.png"))
-    img2 = imagetest2.resize((30,30), Image.Resampling.LANCZOS)
-    img2 = ImageTk.PhotoImage(img2)
-    canvas2.create_image(30,30, image=img2)
-    canvas2.grid()
-    canvas2.bind('<Button-1>', settingsClick) #activate settingsClick when clicked
-    canvas2.config(cursor="hand2")"""
+    canvas7 = tk.Canvas(window,bg="#1c5669", borderwidth=0, highlightthickness=0, width=40, height=40)
+    i = Image.open("GUI_assets\questionMarkButton.png")
+    i2 = i.resize((40,40), Image.Resampling.LANCZOS)
+    i3 = ImageTk.PhotoImage(i2)
+    canvas7.create_image(40,40, image=i3, anchor="se")
+    canvas7.place(relx=0.00, rely=0.93)
+    canvas7.bind("<Button-1>", moreInfo)
+    canvas7.config(cursor="hand2")
 
     #for reference
     # count = [new_vocab, review_vocab, a, studied_vocab, new_kanji, review_kanji, b, studied_kanji, new_sentences, review_sentences, d, studied_sentences, new_grammar, review_grammar, d, studied_grammar]
