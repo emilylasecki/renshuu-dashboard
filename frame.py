@@ -2,6 +2,7 @@
 # text elements go in seperate method so reload only changes text - not the Gui
 
 import tkinter as tk
+from tkinter import Text
 from PIL import ImageTk, Image
 from controller import *
 from pathlib import Path
@@ -72,7 +73,7 @@ def settingsClick(event=None):
         newWindow.destroy()
        # reloadElements(event=None)
 
-    # open new frame with settings GUI and info #Find
+    # open new frame with settings GUI and info 
     print("settings clicked")
     newWindow = tk.Tk()
     newWindow.title("Settings")
@@ -122,10 +123,28 @@ def moreInfo(event=None): # create a GUI that gives info on how counts are calcu
     print("button clicked")
     moreInfoWindow = tk.Tk()
     moreInfoWindow.title("About renshuu dashboard")
-    moreInfoWindow.configure(background="#1c5669", borderwidth=19)
-    moreInfoWindow.minsize(400,400)
-    moreInfoWindow.maxsize(400,400)
-    about = tk.Label(moreInfoWindow, text="How are counts calculated? Because Renshuu API doesn't provide schedule types, the category of each schedule is determined by keywords in the title. Schedules with words or vocab are vocab, schedules with kanji are kanji, schedules with sentences are sentences, and schedules with none of these keywords are grammar. If the counts seem off on your dashboard, please check that your schedules follow this naming convention and alter them if need be.", wraplength=330, bg="#1c5669", fg="white", anchor="center")
+    moreInfoWindow.configure(background="#201c1c", borderwidth=19)
+    moreInfoWindow.minsize(400,480)
+    moreInfoWindow.maxsize(400,480)
+    text = Text(moreInfoWindow)
+    text.insert(tk.INSERT, "How are counts calculated?\n\n")
+    text.insert(tk.INSERT, "Because Renshuu API doesn't provide schedule types,\nthe category of each schedule is determined by \nkeywords in the title. Schedules with words or \nvocab are vocab, schedules with kanji are kanji, \nschedules with sentences are sentences, and \nschedules with none of these keywords are grammar. \nIf the counts seem off on your dashboard, please \ncheck that your schedules follow this naming \nconvention and alter them if need be.")
+    text.insert(tk.INSERT, "\n\nWhy do I have to restart the whole program to update\nthe API key?\n\n")
+    text.insert(tk.INSERT, "Python caches the values of non-json files that cannot\nbe updated during run time. To combat this, restarting \nthe entire program clears the cache and allows these \nfiles to update. This is also the case for the MyKao \ncharacter that appears on the frame and the \nJLPT Progress Graph.")
+    text.insert(tk.INSERT, "\n\nto read more about the development of this program \nvisit https://github.com/emilylasecki/RenshuuAPI")
+    text.place(relx=0.03, rely=0.04)
+    text.tag_add("vocab", "1.1", "1.2")
+    text.tag_add("kanji", "5.23", "6.15")
+    text.config(state=tk.DISABLED, font=("UD_Digi_Kyokasho", 10, "bold"), bg="#201c1c", borderwidth=0, fg="white")
+    text.tag_config("vocab", foreground="blue")
+    text.tag_config("kanji", foreground="#5e5cd0")
+    # add button to close this frame too
+    moreInfoWindow.mainloop()
+    # find
+    # stopping for now because my eyes hurt lol
+#1c5669
+
+    """about = tk.Label(moreInfoWindow, text="How are counts calculated? Because Renshuu API doesn't provide schedule types, the category of each schedule is determined by keywords in the title. Schedules with words or vocab are vocab, schedules with kanji are kanji, schedules with sentences are sentences, and schedules with none of these keywords are grammar. If the counts seem off on your dashboard, please check that your schedules follow this naming convention and alter them if need be.", wraplength=330, bg="#1c5669", fg="white", anchor="center")
     about.config(font=("UD_Digi_Kyokasho",10, "bold"))
     about.place(relx=0.05, rely=0.05)
     api = tk.Label(moreInfoWindow, text="Why do I have to restart the whole program to update the API key? Python caches the values of non-json files that cannot be updated during run time. To combat this, restarting the entire program clears the cache and allows these files to update. This is also the case for the MyKao character that appears on the frame and the JLPT Progress Graph.", wraplength=330, bg="#1c5669", fg="white", anchor="center")
@@ -134,10 +153,10 @@ def moreInfo(event=None): # create a GUI that gives info on how counts are calcu
     thisProject = tk.Label(moreInfoWindow, text="to read more about the development of this program visit https://github.com/emilylasecki/RenshuuAPI", wraplength=330, bg="#1c5669", fg="white", anchor="center") # make link clickable and update when repository name updates
     thisProject.config(font=("UD_Digi_Kyokasho",10, "bold"))
     thisProject.place(relx=0.05, rely=0.9)
-    moreInfoWindow.mainloop()
+    moreInfoWindow.mainloop()"""
 
 
-    """# open new frame with settings GUI and info #Find
+    """# open new frame with settings GUI and info 
     print("settings clicked")
     newWindow = tk.Tk()
     newWindow.title("Settings")
