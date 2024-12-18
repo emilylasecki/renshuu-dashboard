@@ -6,6 +6,7 @@ from tkinter import Text
 from PIL import ImageTk, Image
 from controller import *
 from pathlib import Path
+import webbrowser
 
 GraphVisible2 = False # use boolean to control what view is loaded
 
@@ -130,6 +131,9 @@ def moreInfo(event=None): # create a GUI that gives info on how counts are calcu
     def closeFrame():
         moreInfoWindow.destroy()
         canvas7.bind("<Button-1>", moreInfo)
+
+    def openGitHub():
+        webbrowser.open_new("https://github.com/emilylasecki/RenshuuAPI")
         
     canvas7.unbind("<Button-1>")
     print("button clicked")
@@ -140,13 +144,18 @@ def moreInfo(event=None): # create a GUI that gives info on how counts are calcu
     moreInfoWindow.maxsize(400,550)
     text = Text(moreInfoWindow)
     text2 = Text(moreInfoWindow)
+    text3 = tk.Label(moreInfoWindow, text="https://github.com/emilylasecki/RenshuuAPI")
     text.insert(tk.INSERT, 'How are counts calculated?\n\n')
     text.insert(tk.INSERT, "Because Renshuu API doesn't provide schedule types,\nthe category of each schedule is determined by \nkeywords in the title. Schedules with \"words\" or \n\"vocab\" are vocab, schedules with \"kanji\" are kanji, \nschedules with \"sentences\" are sentences, and \nschedules with none of these keywords are grammar. \nPlease confirm that your schedules follow this naming \nconvention to get accurate results. Renshuu \nAPI also doesn't have a built in way to track whether \nmultiple schedules contain duplicate words. Make \nsure to pause old schedules to midigate overcounting.")
     text2.insert(tk.INSERT, "\n\nWhy do I have to restart the whole program to update\nthe API key?\n\n")
     text2.insert(tk.INSERT, "Python caches the values of non-json files that cannot\nbe updated during run time. To combat this, restarting \nthe entire program clears the cache and allows these \nfiles to update. This is also the case for the MyKao \ncharacter that appears on the frame and the \nJLPT Progress Graph.")
-    text2.insert(tk.INSERT, "\n\n\nto read more about the development of this program \nvisit https://github.com/emilylasecki/RenshuuAPI")
+    text2.insert(tk.INSERT, "\n\n\nTo read more about the development of this program \nvisit")
+    #text3.insert(tk.INSERT, "https://github.com/emilylasecki/RenshuuAPI")
     text.place(relx=0.03, rely=0.04)
     text2.place(relx=0.03, rely=0.44)
+    text3.place(relx=0.11, rely=0.865)
+    text3.bind("<Button-1>", lambda e: openGitHub())
+    text3.config(cursor="hand2")
     #text.tag_add("test", "1.1", "1.2")
     text.tag_add("vocab", "5.23", "6.17")
     text.tag_add("kanji", "6.18", "6.51")
@@ -156,6 +165,7 @@ def moreInfo(event=None): # create a GUI that gives info on how counts are calcu
     text2.tag_add("anotherHighlight", "7.43", "9.15")
     text2.config(state=tk.DISABLED, font=("UD_Digi_Kyokasho", 10, "bold"), bg="#201c1c", borderwidth=0, fg="white")
     text.config(state=tk.DISABLED, font=("UD_Digi_Kyokasho", 10, "bold"), bg="#201c1c", borderwidth=0, fg="white")
+    text3.config(font=("UD_Digi_Kyokasho", 10, "bold"), bg="#201c1c", borderwidth=0, fg="white")
     #text.tag_config("test", foreground="blue")
     text.tag_config("vocab", foreground="#5e5cd0")
     text.tag_config("kanji", foreground="#de8117")
@@ -189,6 +199,9 @@ try:
     window.minsize(600,620)
     window.maxsize(600,620)
     window.geometry("500x500+930+170")
+
+    #   text1 = canvas3.create_text(120, 30, text="View JLPT Progress Graph >>", fill="white", width="300", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
+    #canvas3.tag_bind(text1, "<Button-1>", toggleView)
 
     frame =tk.Frame(window, bg="#1c5669", borderwidth=0, highlightthickness=0)
     frame.grid()
@@ -384,7 +397,7 @@ try:
 
         # button on bottom of frame to change view
     canvas3 = tk.Canvas(window, bg="#1c5669", borderwidth=0, highlightthickness=0, width=300, height=50)
-    text34 = canvas3.create_text(120, 30, text="View Daily Goals >>", fill="white", width="300", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
+    text34 = canvas3.create_text(120, 30, text="<< View Daily Goals", fill="white", width="300", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
     canvas3.tag_bind(text34, "<Button-1>", toggleView)
     canvas3.config(cursor="hand2")
     canvas3.place(relx=0.6, rely=0.92)
