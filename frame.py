@@ -56,7 +56,12 @@ def loadSimpleFrame():
 
 def settingsClick(event=None):
 
+    canvas2.unbind('<Button-1>')
     path= 'Apikey.py'
+
+    def closesettings():
+        newWindow.destroy()
+        canvas2.bind('<Button-1>', settingsClick)
     
     def updateAPIkey():
         input = inputtxt.get("1.0", "end-1c")
@@ -70,7 +75,7 @@ def settingsClick(event=None):
             os.remove("Apikey.py")
             with open (path, 'w') as file:
                 file.write("api_key"+ "= \"" + input + "\"")
-        newWindow.destroy()
+        closesettings()
        # reloadElements(event=None)
 
     # open new frame with settings GUI and info 
@@ -89,6 +94,7 @@ def settingsClick(event=None):
     UpdateButton = tk.Button(newWindow, text="Update",  command=updateAPIkey)
     UpdateButton.place(relx=0.42, rely=0.9)
     message.place(relx = 0.01, rely=0.01)
+    newWindow.protocol("WM_DELETE_WINDOW", closesettings)
     newWindow.mainloop()
    # reloadContent(input)
 
@@ -123,7 +129,9 @@ def moreInfo(event=None): # create a GUI that gives info on how counts are calcu
     
     def closeFrame():
         moreInfoWindow.destroy()
-
+        canvas7.bind("<Button-1>", moreInfo)
+        
+    canvas7.unbind("<Button-1>")
     print("button clicked")
     moreInfoWindow = tk.Tk()
     moreInfoWindow.title("About renshuu dashboard")
@@ -138,7 +146,7 @@ def moreInfo(event=None): # create a GUI that gives info on how counts are calcu
     text2.insert(tk.INSERT, "Python caches the values of non-json files that cannot\nbe updated during run time. To combat this, restarting \nthe entire program clears the cache and allows these \nfiles to update. This is also the case for the MyKao \ncharacter that appears on the frame and the \nJLPT Progress Graph.")
     text2.insert(tk.INSERT, "\n\n\nto read more about the development of this program \nvisit https://github.com/emilylasecki/RenshuuAPI")
     text.place(relx=0.03, rely=0.04)
-    text2.place(relx=0.03, rely=0.4)
+    text2.place(relx=0.03, rely=0.44)
     #text.tag_add("test", "1.1", "1.2")
     text.tag_add("vocab", "5.23", "6.17")
     text.tag_add("kanji", "6.18", "6.51")
@@ -157,10 +165,14 @@ def moreInfo(event=None): # create a GUI that gives info on how counts are calcu
     text2.tag_config("anotherHighlight", foreground="yellow")
 
     okButton = tk.Button(moreInfoWindow, text="Close",  command=closeFrame)
-    okButton.place(relx=0.45, rely=0.9)
+    okButton.place(relx=0.44, rely=0.93)
 
+    moreInfoWindow.protocol("WM_DELETE_WINDOW", closeFrame)
     # add button to close this frame too
     moreInfoWindow.mainloop()
+   # moreInfoWindow.protocol("WM_DELETE_WINDOW", closeFrame)
+   # canvas7.bind("<Button-1>", moreInfo) # FIXME need to move somewhere where can be activated
+   # canvas7.config(state="normal")
 
    # COLORS!!! colorsValue = ["#5e5cd0", "#de8117", "#7acc18", "#d61145"]
     # find
