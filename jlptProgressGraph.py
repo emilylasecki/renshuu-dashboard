@@ -8,7 +8,6 @@ def createGraph(profileJson):
     f = open(profileJson)
     profile = json.load(f)
     df = profile['level_progress_percs']
-   # print(df)
 
     YAxis = ['Vocab', 'Kanji', 'Grammar', 'Sentences']
     XAxis = [profile['level_progress_percs']['vocab']['n5'], profile['level_progress_percs']['kanji']['n5'],profile['level_progress_percs']['grammar']['n5'],profile['level_progress_percs']['sent']['n5']]

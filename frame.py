@@ -15,16 +15,12 @@ def reload(event=None):
         count = reloadContent(0)
         i=0
         for element in count:
-          #  print(count[i])
             i=i+1
             return count
     except:
-        print("api key invalid")
-       # settingsClick()
-    #canvas4.pack_forget()
+        pass
 
 def reloadElements(event):
-   # frame2.forget()  # destroy works but pack doesn't
     try:
         count = reloadContent(0)
         i=0
@@ -47,7 +43,7 @@ def reloadElements(event):
         test12.set(studiedGrammar + count[15])
         createNewFrame()
     except:
-        print("couldn't update frame")
+        pass
     # reload with new image - don't think image is actually updating
 
 def loadSimpleFrame():
@@ -99,10 +95,6 @@ def settingsClick(event=None):
     newWindow.mainloop()
    # reloadContent(input)
 
-""" text10 = tk.Label(frame2, text= "Today Done: ", bg="#201c1c", fg="white")
-    text10.config(font=("UD_Digi_Kyokasho", 20)) """
-  #  text1 = newWindow.create_text(120, 30, text="View JLPT Progress Graph >>", fill="white", width="300", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
-
 def toggleView(event):
     global GraphVisible2
     if GraphVisible2 == True:
@@ -115,16 +107,13 @@ def toggleView(event):
 def createNewFrame(): 
     if GraphVisible2 == True:
         frame3.tkraise()
-       # canvas5.tkraise()
         canvas3.itemconfigure(text1, state='hidden')
         canvas3.itemconfigure(text34, state='normal')
     if GraphVisible2 == False:
-       # canvas5.tag_raise()
+
         frame2.tkraise()
         canvas3.itemconfigure(text34, state='hidden')
         canvas3.itemconfigure(text1, state='normal')
-      #  canvas3.tag_raise("all")
-       # canvas3.tag_raise(text34)
 
 def moreInfo(event=None): # create a GUI that gives info on how counts are calculated
     
@@ -150,13 +139,11 @@ def moreInfo(event=None): # create a GUI that gives info on how counts are calcu
     text2.insert(tk.INSERT, "\n\nWhy do I have to restart the whole program to update\nthe API key?\n\n")
     text2.insert(tk.INSERT, "Python caches the values of non-json files that cannot\nbe updated during run time. To combat this, restarting \nthe entire program clears the cache and allows these \nfiles to update. This is also the case for the MyKao \ncharacter that appears on the frame and the \nJLPT Progress Graph.")
     text2.insert(tk.INSERT, "\n\n\nTo read more about the development of this program \nvisit")
-    #text3.insert(tk.INSERT, "https://github.com/emilylasecki/RenshuuAPI")
     text.place(relx=0.03, rely=0.04)
     text2.place(relx=0.03, rely=0.44)
     text3.place(relx=0.11, rely=0.865)
     text3.bind("<Button-1>", lambda e: openGitHub())
     text3.config(cursor="hand2")
-    #text.tag_add("test", "1.1", "1.2")
     text.tag_add("vocab", "5.23", "6.17")
     text.tag_add("kanji", "6.18", "6.51")
     text.tag_add("sentences", "7.0", "7.40")
@@ -166,7 +153,6 @@ def moreInfo(event=None): # create a GUI that gives info on how counts are calcu
     text2.config(state=tk.DISABLED, font=("UD_Digi_Kyokasho", 10, "bold"), bg="#201c1c", borderwidth=0, fg="white")
     text.config(state=tk.DISABLED, font=("UD_Digi_Kyokasho", 10, "bold"), bg="#201c1c", borderwidth=0, fg="white")
     text3.config(font=("UD_Digi_Kyokasho", 10, "bold"), bg="#201c1c", borderwidth=0, fg="white")
-    #text.tag_config("test", foreground="blue")
     text.tag_config("vocab", foreground="#5e5cd0")
     text.tag_config("kanji", foreground="#de8117")
     text.tag_config("sentences", foreground="#d61145")
@@ -178,19 +164,9 @@ def moreInfo(event=None): # create a GUI that gives info on how counts are calcu
     okButton.place(relx=0.44, rely=0.93)
 
     moreInfoWindow.protocol("WM_DELETE_WINDOW", closeFrame)
-    # add button to close this frame too
+
     moreInfoWindow.mainloop()
-   # moreInfoWindow.protocol("WM_DELETE_WINDOW", closeFrame)
-   # canvas7.bind("<Button-1>", moreInfo) # FIXME need to move somewhere where can be activated
-   # canvas7.config(state="normal")
 
-   # COLORS!!! colorsValue = ["#5e5cd0", "#de8117", "#7acc18", "#d61145"]
-    # find
-    # stopping for now because my eyes hurt lol
-#1c5669
-   
-
-#create the window
 try:
     count =reload()
     window = tk.Tk()
@@ -199,9 +175,6 @@ try:
     window.minsize(600,620)
     window.maxsize(600,620)
     window.geometry("500x500+930+170")
-
-    #   text1 = canvas3.create_text(120, 30, text="View JLPT Progress Graph >>", fill="white", width="300", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
-    #canvas3.tag_bind(text1, "<Button-1>", toggleView)
 
     frame =tk.Frame(window, bg="#1c5669", borderwidth=0, highlightthickness=0)
     frame.grid()
@@ -239,9 +212,6 @@ try:
 
         # frame for content
 
-    # frame4 =tk.Frame(window, bg="#201c1c", borderwidth=5, highlightthickness=0, width=480, height=400)
-    # frame4.place(relx=0.5, rely=0.56, anchor=tk.CENTER)
-
     frame3 =tk.Frame(window, bg="#201c1c", borderwidth=5, highlightthickness=0, width=480, height=400)
     frame3.place(relx=0.5, rely=0.56, anchor=tk.CENTER)
 
@@ -251,22 +221,19 @@ try:
 
 
 
-    # create condition for this to show later: displays graph on frame
     imagetest2 = (Image.open("GUI_assets\my_plot.png"))
     img3 = imagetest2.resize((480,400), Image.Resampling.LANCZOS) 
     img3 = ImageTk.PhotoImage(img3)
     image_label2 = tk.Label(frame3, image =img3, borderwidth=0, highlightthickness=0)
     image_label2.pack()
 
-    # l = tk.Label(frame2, )
-    l = tk.Label(frame2, bg="#1c5669", text = "Invalid API Key. Configure API key in settings!", width=500, height=0, font="UD_Digi_Kyokasho", fg="white", anchor="nw")
-    l.place(relx = 0.01, rely = 0.5)
+    l = tk.Label(frame2, bg="#201c1c", text = "Invalid API Key. Configure API key in settings!", width=480, height=0, font="UD_Digi_Kyokasho", fg="white", anchor="nw")
+    l.place(relx = 0.05, rely = 0.5)
     canvas6 = tk.Canvas(window, bg="#1c5669", borderwidth=0, highlightthickness=0, width=40, height=40)
     imgforFrame = (Image.open("GUI_assets\ButtonReload.png"))
     imgagain = imgforFrame.resize((40,40), Image.Resampling.LANCZOS)
     imgAgain = ImageTk.PhotoImage(imgagain)
 
-    #  canvas6 = tk.Canvas(frame, bg="#1c5669", borderwidth=0, highlightthickness=0, width=50, height=50)
     canvas6.create_image(40,40, image=imgAgain, anchor="se")
     canvas6.place(relx=0.75, rely=0.05)
     canvas6.bind("<Button-1>", reloadElements)
@@ -282,8 +249,6 @@ try:
     canvas7.bind("<Button-1>", moreInfo)
     canvas7.config(cursor="hand2")
 
-    #for reference
-    # count = [new_vocab, review_vocab, a, studied_vocab, new_kanji, review_kanji, b, studied_kanji, new_sentences, review_sentences, d, studied_sentences, new_grammar, review_grammar, d, studied_grammar]
     i=0
     while i<16:
         count[i] = str(count[i])
@@ -292,18 +257,16 @@ try:
     l.destroy()
 
 
-    #text0 = tk.StringVar(frame2,"Today's Goals")
     text = tk.Label(frame2, text="Today's Goals:", bg="#201c1c", fg="white")
     text.config(font=("UD_Digi_Kyokasho", 20)) 
     text.place(relx=0.05, rely=0.02)
 
 
-    test1 = tk.StringVar() #something wrong here FIXME
+    test1 = tk.StringVar()
     newVocab = "New Vocab: "
     test1.set(newVocab + count[0])
     text2 = tk.Label(frame2, textvariable= test1, bg="#201c1c", fg="white")
     text2.config(font=("UD_Digi_Kyokasho", 14)) 
-    # text2.place(relx=0.05, rely=0.2)
     text2.place(relx=0.05, rely=0.6)
 
     test2 = tk.StringVar()
@@ -312,14 +275,12 @@ try:
     text3 = tk.Label(frame2, textvariable= test2, bg="#201c1c", fg="white")
     text3.config(font=("UD_Digi_Kyokasho", 14)) 
     text3.place(relx=0.05, rely=0.15 )
-    #text3.place(relx=0.05, rely=0.3)
 
     test3 = tk.StringVar()
     newKanji = "New Kanji: "
     test3.set(newKanji + count[4])
     text4 = tk.Label(frame2, textvariable=test3, bg="#201c1c", fg="white")
     text4.config(font=("UD_Digi_Kyokasho", 14)) 
-    # text4.place(relx=0.05, rely=0.4)
     text4.place(relx=0.05, rely=0.7)
 
     test4 = tk.StringVar()
@@ -327,7 +288,6 @@ try:
     test4.set(reviewKanji + count[5])
     text5 = tk.Label(frame2, textvariable=test4, bg="#201c1c", fg="white")
     text5.config(font=("UD_Digi_Kyokasho", 14)) 
-    # text5.place(relx=0.05, rely=0.5)
     text5.place(relx=0.05, rely=0.25)
 
     test5 = tk.StringVar()
@@ -335,7 +295,6 @@ try:
     test5.set(newSentences + count[8])
     text6 = tk.Label(frame2, textvariable=test5, bg="#201c1c", fg="white")
     text6.config(font=("UD_Digi_Kyokasho", 14)) 
-    # text6.place(relx=0.05, rely=0.6)
     text6.place(relx=0.05, rely=0.8)
 
     test6= tk.StringVar()
@@ -343,7 +302,6 @@ try:
     test6.set(reviewSentences + count[9])
     text7 = tk.Label(frame2, textvariable=test6, bg="#201c1c", fg="white")
     text7.config(font=("UD_Digi_Kyokasho", 14)) 
-    # text7.place(relx=0.05, rely=0.7)
     text7.place(relx=0.05, rely=0.35)
 
     test7 = tk.StringVar()
@@ -351,7 +309,6 @@ try:
     test7.set(newGrammar + count[12])
     text8 = tk.Label(frame2, textvariable=test7, bg="#201c1c", fg="white")
     text8.config(font=("UD_Digi_Kyokasho", 14)) 
-    # text8.place(relx=0.05, rely=0.8)
     text8.place(relx=0.05, rely=0.9)
 
     test8 = tk.StringVar()
@@ -359,7 +316,6 @@ try:
     test8.set(reviewGrammar + count[13])
     text9 = tk.Label(frame2, textvariable=test8, bg="#201c1c", fg="white")
     text9.config(font=("UD_Digi_Kyokasho", 14)) 
-    # text9.place(relx=0.05, rely=0.9)
     text9.place(relx=0.05, rely=0.45)
 
     text10 = tk.Label(frame2, text= "Today Done: ", bg="#201c1c", fg="white")
@@ -402,13 +358,10 @@ try:
     canvas3.config(cursor="hand2")
     canvas3.place(relx=0.6, rely=0.92)
 
-    # canvas5 = tk.Canvas(window, bg="#1c5669", borderwidth=0, highlightthickness=0, width=300, height=50)
     text1 = canvas3.create_text(120, 30, text="View JLPT Progress Graph >>", fill="white", width="300", font=("UD_Digi_Kyokasho", 12, "bold"), anchor="center")
     canvas3.tag_bind(text1, "<Button-1>", toggleView)
 
     canvas3.itemconfigure(text34, state='hidden')
-    # canvas5.config(cursor="hand2")
-    # canvas5.place(relx=0.6, rely=0.92)
     #View JLPT Progress Graph >>
     #View Daily Goals >>
 

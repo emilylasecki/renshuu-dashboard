@@ -8,7 +8,7 @@ import pandas as pd
 try:
     from Apikey import api_key
 except:
-    print("lol nope")
+    pass
 import os
 import matplotlib
 from jlptProgressGraph import *
@@ -19,8 +19,6 @@ profileJson = "GUI_assets\profile.json"
 schedulesJson = "GUI_assets\schedules.json"
 
 path= "Apikey.py"
-
-#last_modified = os.path.getmtime(path)
 
 #connect to Resnhuu server and load in content as needed
 def reloadContent(api):
@@ -39,7 +37,6 @@ def reloadContent(api):
 
     print("Status code: ", response.status_code)
     x = response.json()
-   # print(json.dumps(x, indent=4, sort_keys=True))
 
     filter_fields=['adventure_level', 'real_name', 'studied', 'api_usage', 'studied', 'kao', 'level_progress_percs']
 
@@ -51,11 +48,10 @@ def reloadContent(api):
     df = pd.read_json(profileJson, lines=True)
     df.to_excel("API_Stuff.xlsx")
 
-    # part 2 - schedules
+    #schedules
 
     response = requests.get(url2, headers=headers)
     x = response.json()
-   # print(json.dumps(x, indent=4, sort_keys=True))
     filter_fields=['schedules', 'today']
     dict_result = { key: x[key]  for key in x if key in filter_fields}
 
@@ -69,7 +65,7 @@ def reloadContent(api):
     try:
         downloadKao(profile['kao'], "GUI_assets\myKao.png")  #FIXME
     except:
-        print("idk what ups")
+        pass
 
     count = getCounts()
     return count
@@ -80,7 +76,6 @@ def downloadKao(image_url, file_dir):
     if response.status_code == 200:
         with open(file_dir, "wb") as fp:
             fp.write(response.content)
-      #  print("Image downloaded successfully.") # may delete print statements later
     else:
         print("Failed to download the image. Status code: {response.status_code}")
 
@@ -90,13 +85,12 @@ def getCounts():
     try:
         f = open(profileJson)
         profile = json.load(f)
-    #  print(name)
 
         r = open(schedulesJson)
         schedules = json.load(r)
         history = schedules['schedules']
 
-        i=0  # i k j and l count total schedules of each type. Do we want to use these?
+        i=0 
         k=0
         j=0
         l=0
@@ -138,29 +132,18 @@ def getCounts():
         new_grammar = new_grammar - new_vocab - new_kanji - new_sentences
         review_grammar = review_grammar - review_vocab - review_sentences - review_kanji
 
-        """print(new_vocab, review_vocab)
-        print(new_kanji, review_kanji)
-        print(new_sentences, review_sentences)
-        print(new_grammar, review_grammar)
-        print(i)
-        print(k)
-        print(j)
-        print(l)"""
-
         studied_grammar = profile['studied']['today_grammar']
         studied_vocab = profile['studied']['today_vocab']
         studied_kanji = profile['studied']['today_kanji']
         studied_sentences = profile['studied']['today_sent']
 
-    # print(studied_grammar, studied_vocab, studied_kanji, studied_sentences)
-    # print(studied_vocab)
         a=0
         b=0
         c=0
         d=0
 
         # get counts of how many schedules previous data is pulled from
-        # may want to modify for today and review to take seperate counts - ponder this (FIXME)
+         # ended up not using these counts
         for schedules in history: 
             if "vocab" in schedules['name'] or "Vocab" in schedules['name'] or "Words" in schedules['name'] or "words" in schedules['name']: 
                 if schedules['today']['review']!=0: 
@@ -173,15 +156,11 @@ def getCounts():
             if "Sentences" in schedules['name'] or "sentences" in schedules['name']: 
                 if schedules['today']['review']!=0: 
                     c=c+1
-        for schedules in history:  # treat grammar differently FIXME
+        for schedules in history:
                 if schedules['today']['review']!=0: 
                     d=d+1
         
         d= d -a - b -c
-        """print(a)
-        print(b)
-        print(c)
-        print(d)"""
 
     # use matplotlib to take jlpt progress percents and make a graphic with it
         createGraph(profileJson)
