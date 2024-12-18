@@ -58,7 +58,10 @@ def settingsClick(event=None):
 
     def closesettings():
         newWindow.destroy()
-        canvas2.bind('<Button-1>', settingsClick)
+        try:
+            canvas2.bind('<Button-1>', settingsClick)
+        except:
+            pass
     
     def updateAPIkey():
         input = inputtxt.get("1.0", "end-1c")
@@ -119,10 +122,13 @@ def moreInfo(event=None): # create a GUI that gives info on how counts are calcu
     
     def closeFrame():
         moreInfoWindow.destroy()
-        canvas7.bind("<Button-1>", moreInfo)
+        try:
+            canvas7.bind("<Button-1>", moreInfo)
+        except:
+            pass
 
     def openGitHub():
-        webbrowser.open_new("https://github.com/emilylasecki/RenshuuAPI")
+        webbrowser.open_new("https://github.com/emilylasecki/renshuu-dashboard")
         
     canvas7.unbind("<Button-1>")
     print("button clicked")
@@ -133,7 +139,7 @@ def moreInfo(event=None): # create a GUI that gives info on how counts are calcu
     moreInfoWindow.maxsize(400,550)
     text = Text(moreInfoWindow)
     text2 = Text(moreInfoWindow)
-    text3 = tk.Label(moreInfoWindow, text="https://github.com/emilylasecki/RenshuuAPI")
+    text3 = tk.Label(moreInfoWindow, text="https://github.com/emilylasecki/renshuu-dashboard")
     text.insert(tk.INSERT, 'How are counts calculated?\n\n')
     text.insert(tk.INSERT, "Because Renshuu API doesn't provide schedule types,\nthe category of each schedule is determined by \nkeywords in the title. Schedules with \"words\" or \n\"vocab\" are vocab, schedules with \"kanji\" are kanji, \nschedules with \"sentences\" are sentences, and \nschedules with none of these keywords are grammar. \nPlease confirm that your schedules follow this naming \nconvention to get accurate results. Renshuu \nAPI also doesn't have a built in way to track whether \nmultiple schedules contain duplicate words. Make \nsure to pause old schedules to midigate overcounting.")
     text2.insert(tk.INSERT, "\n\nWhy do I have to restart the whole program to update\nthe API key?\n\n")
