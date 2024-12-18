@@ -120,12 +120,16 @@ def createNewFrame():
        # canvas3.tag_raise(text34)
 
 def moreInfo(event=None): # create a GUI that gives info on how counts are calculated
+    
+    def closeFrame():
+        moreInfoWindow.destroy()
+
     print("button clicked")
     moreInfoWindow = tk.Tk()
     moreInfoWindow.title("About renshuu dashboard")
     moreInfoWindow.configure(background="#201c1c", borderwidth=10)
-    moreInfoWindow.minsize(400,500)
-    moreInfoWindow.maxsize(400,500)
+    moreInfoWindow.minsize(400,550)
+    moreInfoWindow.maxsize(400,550)
     text = Text(moreInfoWindow)
     text2 = Text(moreInfoWindow)
     text.insert(tk.INSERT, 'How are counts calculated?\n\n')
@@ -134,7 +138,7 @@ def moreInfo(event=None): # create a GUI that gives info on how counts are calcu
     text2.insert(tk.INSERT, "Python caches the values of non-json files that cannot\nbe updated during run time. To combat this, restarting \nthe entire program clears the cache and allows these \nfiles to update. This is also the case for the MyKao \ncharacter that appears on the frame and the \nJLPT Progress Graph.")
     text2.insert(tk.INSERT, "\n\n\nto read more about the development of this program \nvisit https://github.com/emilylasecki/RenshuuAPI")
     text.place(relx=0.03, rely=0.04)
-    text2.place(relx=0.03, rely=0.48)
+    text2.place(relx=0.03, rely=0.4)
     #text.tag_add("test", "1.1", "1.2")
     text.tag_add("vocab", "5.23", "6.17")
     text.tag_add("kanji", "6.18", "6.51")
@@ -151,6 +155,10 @@ def moreInfo(event=None): # create a GUI that gives info on how counts are calcu
     text.tag_config("grammar", foreground="#7acc18")
     text.tag_config("highlight", foreground="yellow")
     text2.tag_config("anotherHighlight", foreground="yellow")
+
+    okButton = tk.Button(moreInfoWindow, text="Close",  command=closeFrame)
+    okButton.place(relx=0.45, rely=0.9)
+
     # add button to close this frame too
     moreInfoWindow.mainloop()
 
@@ -158,37 +166,7 @@ def moreInfo(event=None): # create a GUI that gives info on how counts are calcu
     # find
     # stopping for now because my eyes hurt lol
 #1c5669
-
-    """about = tk.Label(moreInfoWindow, text="How are counts calculated? Because Renshuu API doesn't provide schedule types, the category of each schedule is determined by keywords in the title. Schedules with words or vocab are vocab, schedules with kanji are kanji, schedules with sentences are sentences, and schedules with none of these keywords are grammar. If the counts seem off on your dashboard, please check that your schedules follow this naming convention and alter them if need be.", wraplength=330, bg="#1c5669", fg="white", anchor="center")
-    about.config(font=("UD_Digi_Kyokasho",10, "bold"))
-    about.place(relx=0.05, rely=0.05)
-    api = tk.Label(moreInfoWindow, text="Why do I have to restart the whole program to update the API key? Python caches the values of non-json files that cannot be updated during run time. To combat this, restarting the entire program clears the cache and allows these files to update. This is also the case for the MyKao character that appears on the frame and the JLPT Progress Graph.", wraplength=330, bg="#1c5669", fg="white", anchor="center")
-    api.config(font=("UD_Digi_Kyokasho",10, "bold"))
-    api.place(relx=0.05, rely=0.5)
-    thisProject = tk.Label(moreInfoWindow, text="to read more about the development of this program visit https://github.com/emilylasecki/RenshuuAPI", wraplength=330, bg="#1c5669", fg="white", anchor="center") # make link clickable and update when repository name updates
-    thisProject.config(font=("UD_Digi_Kyokasho",10, "bold"))
-    thisProject.place(relx=0.05, rely=0.9)
-    moreInfoWindow.mainloop()"""
-
-
-    """# open new frame with settings GUI and info 
-    print("settings clicked")
-    newWindow = tk.Tk()
-    newWindow.title("Settings")
-    newWindow.configure(background="#1c5669", borderwidth=19) # renshuu color
-    newWindow.minsize(300,300)
-    newWindow.maxsize(300,300)
-    newWindow.geometry("500x500+1000+300")
-    message = tk.Label(newWindow, text="Copy your Renshuu API key and paste it in the box below. Press update and then restart the program to review your Renshuu stats!", wraplength=260, bg="#1c5669", fg="white", anchor="center")
-    message.config(font=("UD_Digi_Kyokasho",10, "bold"))
-   # message.place(relx = 0.05, rely=0.05)
-    inputtxt = tk.Text(newWindow, height=8, width=20)
-    inputtxt.place(relx= 0.2, rely=0.35)
-    UpdateButton = tk.Button(newWindow, text="Update",  command=updateAPIkey)
-    UpdateButton.place(relx=0.42, rely=0.9)
-    message.place(relx = 0.01, rely=0.01)
-    newWindow.mainloop()"""
-        
+   
 
 #create the window
 try:
