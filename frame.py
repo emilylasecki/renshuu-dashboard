@@ -230,26 +230,12 @@ try:
     frame2 =tk.Frame(window, bg="#201c1c", borderwidth=5, highlightthickness=0, width=480, height=400)
     frame2.place(relx=0.5, rely=0.56, anchor=tk.CENTER)
 
-
-
-    imagetest2 = (Image.open("GUI_assets\my_plot.png"))
-    img3 = imagetest2.resize((480,400), Image.Resampling.LANCZOS) 
-    img3 = ImageTk.PhotoImage(img3)
-    image_label2 = tk.Label(frame3, image =img3, borderwidth=0, highlightthickness=0)
-    image_label2.pack()
-
     l = tk.Label(frame2, bg="#201c1c", text = "Invalid API Key. Configure API key in settings!", width=480, height=0, font="UD_Digi_Kyokasho", fg="white", anchor="nw")
     l.place(relx = 0.05, rely = 0.5)
     canvas6 = tk.Canvas(window, bg="#1c5669", borderwidth=0, highlightthickness=0, width=40, height=40)
     imgforFrame = (Image.open("GUI_assets\ButtonReload.png"))
     imgagain = imgforFrame.resize((40,40), Image.Resampling.LANCZOS)
     imgAgain = ImageTk.PhotoImage(imgagain)
-
-    canvas6.create_image(40,40, image=imgAgain, anchor="se")
-    canvas6.place(relx=0.75, rely=0.05)
-    canvas6.bind("<Button-1>", reloadElements)
-    canvas6.config(cursor="hand2")
-   
 
     canvas7 = tk.Canvas(window,bg="#1c5669", borderwidth=0, highlightthickness=0, width=40, height=40)
     i = Image.open("GUI_assets\questionMarkButton.png")
@@ -260,12 +246,23 @@ try:
     canvas7.bind("<Button-1>", moreInfo)
     canvas7.config(cursor="hand2")
 
+    imagetest2 = (Image.open("GUI_assets\my_plot.png"))
+    img3 = imagetest2.resize((480,400), Image.Resampling.LANCZOS) 
+    img3 = ImageTk.PhotoImage(img3)
+    image_label2 = tk.Label(frame3, image =img3, borderwidth=0, highlightthickness=0)
+    image_label2.pack()
+
     i=0
     while i<16:
         count[i] = str(count[i])
         i=i+1
 
     l.destroy()
+
+    canvas6.create_image(40,40, image=imgAgain, anchor="se")
+    canvas6.place(relx=0.75, rely=0.05)
+    canvas6.bind("<Button-1>", reloadElements)
+    canvas6.config(cursor="hand2")
 
 
     text = tk.Label(frame2, text="Today's Goals:", bg="#201c1c", fg="white")
