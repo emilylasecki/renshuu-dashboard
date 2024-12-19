@@ -65,7 +65,7 @@ def settingsClick(event=None):
     
     def updateAPIkey():
         input = inputtxt.get("1.0", "end-1c")
-        print(input)
+       # print(input)
        # print("test")
         # save input to new file
         if not os.path.exists(path):
@@ -79,7 +79,7 @@ def settingsClick(event=None):
        # reloadElements(event=None)
 
     # open new frame with settings GUI and info 
-    print("settings clicked")
+   # print("settings clicked")
     newWindow = tk.Tk()
     newWindow.title("Settings")
     newWindow.configure(background="#1c5669", borderwidth=19) # renshuu color
@@ -131,7 +131,7 @@ def moreInfo(event=None): # create a GUI that gives info on how counts are calcu
         webbrowser.open_new("https://github.com/emilylasecki/renshuu-dashboard")
         
     canvas7.unbind("<Button-1>")
-    print("button clicked")
+   # print("button clicked")
     moreInfoWindow = tk.Tk()
     moreInfoWindow.title("About renshuu dashboard")
     moreInfoWindow.configure(background="#201c1c", borderwidth=10)
@@ -173,6 +173,10 @@ def moreInfo(event=None): # create a GUI that gives info on how counts are calcu
 
     moreInfoWindow.mainloop()
 
+def goToRenshuu():
+    webbrowser.open_new("https://www.renshuu.org")
+
+
 try:
     count =reload()
     window = tk.Tk()
@@ -197,7 +201,8 @@ try:
 
     #title
     l = tk.Label(window, bg="#1c5669", text = "renshuu dashboard \n 毎日がんばってね!", width=15, height=0, font="UD_Digi_Kyokasho", fg="white", anchor="nw")
-    l.config(font=("UD_Digi_Kyokasho", 20, "bold")) 
+    l.bind("<Button-1>", lambda e: goToRenshuu())
+    l.config(font=("UD_Digi_Kyokasho", 20, "bold"), cursor="hand2")
     l.grid(row=0,column=1)
 
     # settings button

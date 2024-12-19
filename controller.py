@@ -126,7 +126,7 @@ def getCounts():
                 review_grammar = review_grammar + schedules['today']['review']
                 l=l+1 
 
-        print(review_vocab)
+      #  print(review_vocab)
 
 
         new_grammar = new_grammar - new_vocab - new_kanji - new_sentences
@@ -168,7 +168,7 @@ def getCounts():
         count = [new_vocab, review_vocab, a, studied_vocab, new_kanji, review_kanji, b, studied_kanji, new_sentences, review_sentences, d, studied_sentences, new_grammar, review_grammar, d, studied_grammar]
         return count
     except:
-        print("api key still not valid")
+      #  print("api key still not valid")
         count = [0,0,0,0,0,0,0,0,0,0,0,0,0]
         return count
 
