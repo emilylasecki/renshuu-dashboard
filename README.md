@@ -26,7 +26,7 @@ Upon starting up renshuu dashboard for the first time, the following view will b
 ![loadapikey](https://github.com/user-attachments/assets/f398919c-ee03-420a-a671-d08c63b561d6)
 
 
-After entering your API key, a similar view to the following will appear. Your renshuu Kaochan will populate on the frame, today's terms will be counted on the frame, and you'll unlock the toggle feature in the lower right corner to view your progress graph.
+After entering your API key and re-running the program, a similar view to the following will appear. Your renshuu Kaochan will populate on the frame, today's terms will be counted on the frame, and you'll unlock the toggle feature in the lower right corner to view your progress graph.
 
 
 <p align="center">

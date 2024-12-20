@@ -5,8 +5,8 @@ import tkinter as tk
 from tkinter import Text
 from PIL import ImageTk, Image
 from controller import *
-from pathlib import Path
 import webbrowser
+import os
 
 GraphVisible2 = False # use boolean to control what view is loaded
 

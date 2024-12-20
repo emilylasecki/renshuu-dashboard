@@ -9,11 +9,7 @@ try:
     from Apikey import api_key
 except:
     pass
-import os
-import matplotlib
 from jlptProgressGraph import *
-import time
-import os
 
 profileJson = "GUI_assets\profile.json"
 schedulesJson = "GUI_assets\schedules.json"
@@ -45,9 +41,6 @@ def reloadContent(api):
     with open(profileJson, "w") as outfile:  # extract desired fields into json file
         json.dump(dict_result, outfile)
     
-    df = pd.read_json(profileJson, lines=True)
-    df.to_excel("API_Stuff.xlsx")
-
     #schedules
 
     response = requests.get(url2, headers=headers)
