@@ -15,7 +15,7 @@ This project utilizes renshuu.org's API to get user's Japanese vocab, kanji, sen
 - Bundled into a single executable file so program can run without touching the command line
 
 
-## Program images
+## Project images
 
 Upon starting up renshuu dashboard for the first time, the following view will be visible. By pressing the grey gear in the upper right corner, the settings window will open and prompt you for your API key.
 
@@ -41,3 +41,5 @@ To run this program from the command line and to see or modify the source code, 
 To re-create the executable file for windows, make sure pyinstaller is installed and while in the current directory run the following command (for Mac OS replace the semicolons with colons): 
 
 pyinstaller --onefile --noconsole --add-data "myKao.png;." --add-data "ButtonReload.png;." --add-data "questionMarkButton.png;." --add-data "settings.png;." --icon frame.ico frame.py
+
+Your executable file will populate in a sub-directory of your working directory called "dist".
