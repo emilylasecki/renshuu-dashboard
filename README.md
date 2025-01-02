@@ -34,11 +34,14 @@ After entering your API key, a .txt file will be generated in the directory for 
 
 ## To Run
 
-To run from the executable file, download RenshuuDashboard.exe. Create an account at https://www.renshuu.org/, navigate to resources/tools/renshuuAPI and copy the read only API key. Bootup RenshuuDashboard.exe and click on the grey gear in the top right corner. Paste your API key in the box and press update. Close and restart the program to see your daily goals and overall Japanese learning progress!
+### To run from the executable file:
+Download RenshuuDashboard.exe. Create an account at https://www.renshuu.org/, navigate to resources/tools/renshuuAPI and copy the read only API key. Bootup RenshuuDashboard.exe and click on the grey gear in the top right corner. Paste your API key in the box and press update. Close and restart the program to see your daily goals and overall Japanese learning progress!
 
-To run this program from the command line and to see or modify the source code, first clone this repository and install all dependencies. Create a renshuu account as described above. Run the command python frame.py in the cloned directory. Click on the settings icon in the upper right corner, paste the API key and click update. Close the program and re-run the command python frame.py to get your stats.
+### To run from the command line:
+Clone this repository and install all dependencies. Create a renshuu account as described above. Run the command python frame.py in the cloned directory. Click on the settings icon in the upper right corner, paste the API key and click update. Close the program and re-run the command python frame.py to get your stats.
 
-To re-create the executable file for windows, make sure pyinstaller is installed and while in the current directory run the following command (for Mac OS replace the semicolons with colons): 
+### To re-create the executable file:
+Make sure pyinstaller is installed and while in the current directory run the following command for windows (for Mac OS replace the semicolons with colons): 
 
 pyinstaller --onefile --noconsole --add-data "myKao.png;." --add-data "ButtonReload.png;." --add-data "questionMarkButton.png;." --add-data "settings.png;." --icon frame.ico frame.py
 
